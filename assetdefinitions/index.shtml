@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<title>Asset Definitions</title>
+<html>
+<!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+        <div id="modelTableContainer" class="container">
+            <div class="section">
+                <h1>Asset Definitions</h1>
+                <div class="divider"></div>
+                <div class="section"></div>
+            </div>
+
+            <div class="">
+              <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                     <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Asset Definition</h6>
+
+              <form id="modelForm" class="">
+                <div class="input-field">
+                  <input id="name" class="validate" type="text"  required>
+                  <label for='name'>Asset Definition Name</label>
+                </div>
+                <div>
+                    <button id="submit"
+                            class="btn-small    waves-effect waves-light"
+                            value="Create"
+                            type="submit"> Create
+                    </button>
+                </div>
+              </form>
+                <div class='table-container'>
+                  <table id="modelTable" class="centered">
+                      <thead>
+                          <tr>
+                            <th>Del</th>
+                            <th>View</th>
+                            <th>Name</th>
+                          </tr>
+                      </thead>
+                      <tbody id="assetDefTable" >
+                          <!--  TABLE CONTENTS/DATA LOADED BY JS    -->
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+<!--******************************************************************************************************-->
+     <!--#include virtual="/common/footer.html"-->
+    <script src="assetdefinitions/assetdefinitions.js">//PAGE SPECIFIC JS</script>
+</html>

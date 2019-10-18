@@ -1,0 +1,75 @@
+
+<html>
+<head>
+
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="icon" href="/favicon.png">
+
+    <!-- Dependencies: jquery 3.3.1, material css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js"> </script>
+    <script src="/node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+    <!-- Personal CSS -->
+    <link href="/css/stylesTest.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+        <div id="header">
+            <script>
+                $(function(){
+                    $('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                    $("#header").load("/common/header.html");
+                });
+            </script>
+        </div>
+
+<!--******************************************************************************************************-->
+    <div class="container">
+
+        <div id="userHeader">
+            <h1>Users</h1>
+            <div class="divider"></div>
+        </div>
+        <div class="section">
+
+            <div class="container">
+                <h6><a class="createBtn btn-floating waves-effect waves-light " ><i class="material-icons">add</i></a>&nbsp;&nbsp;Create New User</h6>
+                <form id="userForm">
+                    <input id="username" type="email" placeholder="Email">
+                    <div>
+                        <button id="userSubmit"
+                                class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                                value="Create"
+                                type="submit"> Create
+                        </button>
+                    </div>
+                </form>
+<!--                <h6 class="center-align">Users</h6>-->
+                <table id="userTable" class="centered">
+                    <thead>
+                        <th>Del</th>
+                        <th>Username</th>
+                    </thead>
+                    <tbody id="userList">
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="users.js"></script>
+    <script src='../common/js/lime.js'></script>
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title>Asset Groups</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="icon" href="../favicon.png">
+    <!-- Dependencies: jquery 3.3.1, material css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"> </script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+    <!-- Personal CSS -->
+    <link href="../css/stylesTest.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="header">
+        <script>
+            $(function(){
+                $("#header").load("../common/header.html");
+            });
+        </script>
+    </div>
+<!--******************************************************************************************************-->
+    <div class="container">
+         <div id="assetgroupsHeader">
+            <h1>Asset Groups</h1>
+            <div class="divider"></div>
+        </div>
+        <div id="main" class="container">
+                <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Asset Group</h6>
+
+                <form id="assetgroupForm">
+                  <div class="input-field">
+                    <input id="name" class="validate" type="text" required>
+                    <label for="name">Asset Group Name</label>
+                  </div>
+                  <div class="input-field">
+                    <input id="description" class="validate" type="text" required>
+                    <label for="description">Description</label>
+                  </div>
+                  <button id="assetgroupSubmit"
+                          class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                          type="submit"> Create
+                  </button>
+                </form>
+<!--                <h6 class="center-align">Asset Groups</h6>-->
+                <table id="assetGroupTable" class="centered responsive-table">
+                    <thead>
+                        <th>Del</th>
+                        <th>Edit</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+                </table>
+        </div>
+<!--********************************* EDIT ASSET GROUP LISTS *********************************************-->
+        <div id="editList" class="container hide">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                            <i class="material-icons">add</i></a>&nbsp;&nbsp;Add Asset </h6>
+
+                        <form id="addAssetForm" >
+                            <div class="input-field">
+                                <select id="outAssets" class="validate" multiple required>
+                                    <option value="default" disabled selected style="color:#9e9e9e" >Choose Asset</option>
+                                </select>
+                                <label for='outAssets'>Choose Assets</label>
+                            </div>
+                            <button id="assetSubmit"
+                                    class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                                    type="submit"> Add
+                            </button>
+                        </form>
+
+                        <h5 class="center-align">Assets in <span id="assetGroupName"></span></h5>
+                        <table id="assetGroupAssetsList" class="centered responsive-table">
+                            <thead>
+                                <th>Del</th>
+                                <th>Name</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <button class="btn-small cyan cyan darken-3 waves-effect waves-light" onclick="backToMain()">Go back</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--********************************* NEW ASSET GROUP DIALOG *********************************************-->
+<!--
+            <div class="agEdit agTab">
+                <h1></h1>
+                <div id="agEditConnected" class="listDiv"></div>
+                <button id="agApplyChanges">Apply</button>
+                <button onclick="backToMain()">Cancel</button>
+            </div>
+-->
+<!--
+    <div class="agNew dialog">
+        <label>Asset Group Name: <input type=text class="newName"></label><br>
+        <label>Parent Asset Group: <select class="assetGroupSelect"></select></label><br>
+        <label>Description: <input type=text class="assetGroupDescription"></label><br>
+    </div>
+-->
+<!--<script src='/js/lime.js'></script>-->
+  <script src="../common/js/lime.js">//LOGIN STATUS JS</script>
+  <script src="assetgroups.js"></script>
+</body>
+</html>

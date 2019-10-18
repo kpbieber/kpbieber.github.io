@@ -1,0 +1,30 @@
+
+<html>
+    <title>Log In</title>
+ <!--#include virtual="../common/head.html"-->
+<!--******************************************************************************************************-->
+
+        <div id="loginContainer" class="container">
+            <div class="container">
+                <div class=" row">
+                    <div id="loginBox" class="loginBox">
+
+                          <label>Username:</label> <input id="username" type="text" name="username"><br>
+                          <label class="password">Enter Password:</label> <input id="password" type="password" name="password"><br>
+
+                          <label class="confirm">Confirm Password: <input id="confirm" type="password" name="confirm"></label><br>
+                          <label class='changeId'>ChangeId: <input id="changeId" name="changeId"></label><br>
+
+                          <p id="errorText" style="color:red"></p>
+
+                          <a class="btn-small cyan darken-3 waves-effect waves-light login">Login</a>
+                          <a class="btn-small cyan darken-3 waves-effect waves-light changePassword">Reset Password</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src="login/login.js"></script>
+     <!--#include virtual="..\common\footer.html"-->
+</html>

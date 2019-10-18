@@ -1,0 +1,80 @@
+
+.panel-container{
+    height: 90vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  /* avoid browser level touch actions */
+  xtouch-action: none;
+}
+
+
+#list{
+/*    height:100%;*/
+    width:50%;
+    overflow-y: scroll;
+    flex: 0 0 auto;
+  /* only manually resize */
+    white-space: nowrap;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding: 1em;
+}
+
+#list input {
+    width: 150px;
+}
+
+#mapcontainer{
+    flex: 1 1 auto;
+    /* resizable */
+    width: 100%;
+}
+
+#map {
+/*    width:50%;*/
+    height:100%;
+    position: relative;    
+}
+
+
+#slider {
+  flex: 0 0 auto;
+  width: 18px;  
+  background: #535353;
+  min-height: 200px;
+  cursor: col-resize;
+}
+
+#switchmode {
+    height:30px;
+    margin:0;
+    background: #616161;
+    text-align: center;
+   
+}
+
+#switchmode > li {
+    display:inline-block;
+    list-style: none;
+    padding:4px 16px;
+     position: static;
+}
+
+#switchmode > li.active {
+    background-color:green;
+}
+
+
+
+#assetTable{
+    width:100%
+}
+
+.content{
+    width:100%;
+}
+
+a.map{
+    color:black
+}

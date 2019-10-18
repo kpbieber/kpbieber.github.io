@@ -1,0 +1,198 @@
+
+<html>
+<head>
+    <title>User Groups</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    
+<!--    <link href="/css/style.css" rel="stylesheet" type="text/css" />-->
+    <link rel="shortcut icon" href="/LimeWeb/css/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="/LimeWeb/css/images/home_icon.png">
+    <link rel="apple-touch-startup-image" href="/LimeWeb/css/images/axt_splash.png">
+    <link rel="stylesheet" href="/js/jquery-ui/jquery-ui.css"/>
+    
+    <script src="/js/jquery/jquery.js"></script> 
+    <script src="/js/jquery-ui/jquery-ui.js"></script> 
+    <script src="/js/jquery-ui/touchpunch.js"></script> 
+    <script src="/js/tablesort/tablesort.js"></script> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        
+    <link href="/css/stylesTest.css" rel="stylesheet" type="text/css">
+    
+</head>
+
+<body>
+    
+        <div id="header">
+            <script>
+                $(function(){
+                    $('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                    $("#header").load("/common/header.html"); 
+                });
+            </script>
+        </div>
+<!--******************************************************************************************************-->
+    
+    <div class="main container">
+        
+        <div id="userHeader">
+            <h1>User Groups</h1>
+            <div class="divider"></div>
+        </div>
+
+        
+        <!--*****************************************FIRST PAGE ***********************************-->
+        <div class="content container">
+            
+            
+            
+            <div class="ugMain ugTab">
+                
+                <h6><a class="btn-floating waves-effect waves-light " 
+                       onclick="$('.ugNew').dialog('open');$('.newName').val('');$('.userGroupDescription').val('')">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New User Group</h6>
+                
+                <h6 class="center-align">User Groups</h6>
+                <table id="userGroupTable">    
+                </table>
+                
+            </div>
+            
+            
+    <!--*****************************************USER GROUP DASH ***********************************-->
+
+              <div class="container">
+                     
+                  
+                  <div class="ugHeader">
+                     <h1>UserGroup: <span id='usergroupId'></span></h1>
+                     <h3>Placeholder</h3>
+                      <div class="divider"></div>
+                  </div>
+                  
+                  <div class="section"></div>
+                  
+                  <div id="usergroupContainer" class="container">                                                                                             
+                      <div id="ugList" class="row">
+
+                          <div class="col s12 m4 box" id="ugUserTable">
+                              <i class="large material-icons">person</i>
+                              <p>View and manage users</p>
+                              <button class="btn-small cyan darken-3 waves-effect waves-light">Users</button>
+                          </div>
+
+
+                          <div class="col s12 m4 box" id="ugPermTable">
+                              <i class="large material-icons">lock</i>
+                              <p>Manage user permissions</p>
+                              <button class="btn-small cyan darken-3 waves-effect waves-light">Permissions</button>
+                          </div>
+
+
+                          <div class="col s12 m4 box" id="ugAgTable">
+                              <i class="large material-icons">settings_input_component</i>
+                              <p>View and manage asset groups</p>
+                              <button class="btn-small cyan darken-3 waves-effect waves-light">Asset Groups</button>
+                          </div>
+
+                           <div class="col s12 m4 box" id="ugAlertTable">
+                                <i class="large material-icons">email</i>
+                                <p>Create, Edit, Delete</p>
+                                <button class="btn-small cyan darken-3 waves-effect waves-light">Alerts</button>
+                           </div>
+
+                       </div>
+                    </div>
+                  
+                  <a href="../">Back to User Groups</a>                 
+                                    
+              </div>
+    <!--***************************************** EDIT AND VIEW TABLES ********************************************-->
+
+              <div class="ugEdit ugTab">
+                 <h1></h1>
+                 <div id="ugUserConnected" class="listDiv"></div>
+                 <button id="ugApplyChanges">Apply</button>
+                 <button onclick="backToMain('ugDash')">Cancel</button>
+              </div>
+            
+              <div class="ugEditAg ugTab">
+                  <h1></h1>
+                  <div id="ugAgConnected" class="listDiv"></div>
+                 <button id="ugApplyAgChanges">Apply</button>
+                  <button onclick="backToMain('ugDash')">Cancel</button>
+              </div>
+            
+              <div class="ugEditJob ugTab">
+                  <h1></h1>
+                  <div id="ugJobConnected" class="listDiv"></div>
+                 <button id="ugApplyJobChanges">Apply</button>
+                  <button onclick="backToMain('ugDash')">Cancel</button>
+              </div>
+            
+              <div class="ugEditPermissions ugTab" >
+                  <h1></h1>
+                  <div id="ugPermConnected" class="listDiv"></div>
+                  <button id="ugApplyPermissionsChanges">Apply</button>
+                  <button onclick="backToMain('ugDash')">Cancel</button>
+              </div>
+            
+                  
+            
+    <!--***************************************** ALERT TABLE & DIALOG ********************************************-->
+
+              <div class="ugEditAlerts ugTab" >
+                  
+                   <h6><a class="btn-floating waves-effect waves-light " 
+                       onclick='$("#newAlertDialog").dialog("open")'>
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Alert</h6>
+                  
+                  <h6 class="center-align">Alerts</h6>
+                  <table id="alertTable">
+                        <thead>
+                            <th>Asset Group</th>
+                            <th>Min Severity</th>
+                            <th>Max Severity</th>
+                            <th>Status</th>
+                            <th>Alert Online?</th>
+                            <th>Alert Offline?</th>
+                        </thead>
+                      
+                        <tbody>
+                            
+                        </tbody>
+                  </table>
+                          
+                 <button id="ugApplyAlertChanges">Apply</button>
+                 <button onclick="backToMain('ugDash')">Cancel</button>
+                                  
+                <div id="newAlertDialog">
+                      Asset Group<select class="assetGroupSelect"></select><br>
+                      Alert on alarm?<input id="alertAlarm" type="checkbox"/><br>
+                      Minimum Severity<input id="sevMin" type="number" value="1"/><br>
+                      Maximum Severity<input id="sevMax" type="number" value="1"/><br>
+                      Alarm Status: <select id="alarmStatus"><br>
+                          <option>OPEN</option>
+                          <option>CLOSED</option>
+                          <option>ACKNOWLEDGED</option>
+                          <option>ESCALATED</option>
+                      </select>
+                    
+                      Include Online alert?<input id="alertOn" type="checkbox"/><br>
+                      Include Offline alert?<input id="alertOff" type="checkbox"/><br>
+                    
+                </div>
+                  
+            </div>
+                   
+        </div>
+      
+    </div>
+</body>
+    
+    <script src='/js/lime.js'></script>
+    <script src="usergroups.js"></script>
+</html>

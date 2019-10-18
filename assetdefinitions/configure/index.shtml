@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<title>Asset Definition Configure</title>
+<html>
+    <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+    <div id="modelContainer" class="container">
+        <div id="modelHeader">
+		<!--<h1>Model ID: <span id="modelId"></span></h1>-->
+            <h1 id="modelName" class="truncate"></h1>
+            <div class="divider"></div>
+            <div class="section"></div>
+        </div>
+
+        <div id="modelList" class="">
+            <div  class="row">
+                <div class="col s12 m6 l4 box">
+                  <div class="card">
+                    <div class="card-content">
+					            <a id="alarmIcon" href="alarms/" ><i class="large material-icons">access_alarm</i> </a>
+                      <p>Create, Edit, Delete</p>
+                    </div>
+                    <div class="card-content card-bottom">
+                      <a id="alarmButton" class="link   waves-effect waves-light" href="alarms/">Alarms</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 m6 l4 box">
+                  <div class="card">
+                    <div class="card-content">
+					            <a id="dashboardIcon" href=""><i class="large material-icons">dashboard</i></a>
+                      <p>Configure</p>
+                    </div>
+                    <div class="card-content card-bottom">
+                      <a id="dashButton" class="link    waves-effect waves-light" href="">Dashboard</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s12 m6 l4 box">
+                  <div class="card">
+                    <div class="card-content">
+					            <a id="dataIcon" href=""><i class="large material-icons">insert_chart</i></a>
+                      <p>Create, Edit, Delete</p>
+                    </div>
+                    <div class="card-content card-bottom">
+                      <a id="dataitemsButton" class="link   waves-effect waves-light" href=" ">Data Items</a>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<!--******************************************************************************************************-->
+    <!--#include virtual="/common/footer.html"-->
+    <script src="assetdefinitions/configure/assetdefinition.js">//PAGE SPECIFIC JS</script>
+</html>

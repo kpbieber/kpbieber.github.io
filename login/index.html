@@ -1,0 +1,66 @@
+
+<html>
+<head>
+
+  <title>Login</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="YES">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="icon" href="/favicon.png">
+
+  <!--<link href="/css/style.css" rel="stylesheet" type="text/css" />-->
+  <link rel="shortcut icon" href="/LimeWeb/css/images/favicon.png" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/LimeWeb/css/images/home_icon.png">
+  <link rel="apple-touch-startup-image" href="/LimeWeb/css/images/axt_splash.png">
+  <link rel="stylesheet" href="/js/jquery-ui/jquery-ui.css"/>
+
+  <!-- Dependencies: jquery 3.3.1, material css -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+  <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css">
+  <script src="/node_modules/jquery/dist/jquery.min.js"> </script>
+  <script src="/node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+
+  <!-- Personal CSS -->
+  <link href="/css/stylesTest.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <div id="header">
+        <script>
+            $(function(){
+                $('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                $("#header").load("/common/header.html");
+            });
+        </script>
+    </div>
+<!--******************************************************************************************************-->
+
+        <div id="loginContainer" class="container">
+            <div class="container">
+                <div class=" row">
+                    <div id="loginBox" class="loginBox">
+
+                          <label>Username:</label> <input id="username" type="text" name="username"><br>
+                          <label class="password">Enter Password:</label> <input id="password" type="password" name="password"><br>
+
+                          <label class="confirm">Confirm Password: <input id="confirm" type="password" name="confirm"></label><br>
+                          <label class='changeId'>ChangeId: <input id="changeId" name="changeId"></label><br>
+
+                          <p id="errorText" style="color:"></p>
+
+                          <a class="btn-small cyan darken-3 waves-effect waves-light login">Login</a>
+                          <a class="btn-small cyan darken-3 waves-effect waves-light changePassword">Reset Password</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <script src='../common/js/lime.js'></script>
+    <script src="login.js"></script>
+</body>
+</html>

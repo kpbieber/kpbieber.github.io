@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+    
+    <title>Leak Detection</title>
+    <!--#include virtual="/common/head.html"-->
+    <style>
+        table.dataTable tbody tr {
+            background-color: rgba(0, 0, 0, 0.00)!important;
+        }
+        #eventsContainer > div,#eventsContainer > table {
+        }
+        @media all and (min-width: 801px) {
+        #map{
+            grid-column:2 /  2;
+            height:100%;
+            
+        }
+        table{
+            margin-top:30px;
+        }
+        #tables{
+            grid-column:1 / 1;
+            
+        }
+        #eventsContainer {
+            height:90%;
+            width:100%;
+              position:absolute;
+              display: grid;
+              grid-gap: 24px;
+              grid-template-columns: 800px auto ;
+        }
+        }
+        @media all and (max-width: 800px) {
+            
+            #eventsContainer {
+                
+                position:absolute;
+            }
+            #map{
+                height:400px;
+                 width:100%;
+            }
+            table{
+                width:100%;
+            }
+            #tables{
+                width:100%;
+            }
+        }
+    </style>
+    <script src="common/js/moment.js"></script>
+    <div id="eventsContainer">
+        
+        <div id="tables">
+            <div><h1>Pipeline Details</h1>
+        <table id="pipeline">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table></div>
+            <div><h1>Event Groups</h1>
+        <table id="groupstable">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table></div>
+        <div><h1>Detected Events</h1>
+            <table id="events">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+            </div>
+        
+        
+        </div>
+        
+        <div id="map"></div>
+    </div>
+    <script>
+
+        //Easy to grab from XHR
+        var index
+        var subSystemName = 'LIME-TESTLINE'
+        var events =[]
+        var assets = {}
+        var x
+        var L
+        var Lt = 0
+        var dt
+        var firstLocation
+        var nextDownstream
+        var nextUpstream
+        var c = getParameterByName("c")
+        var v = 30
+        var map
+        var windowLength = 2
+        var infowindow
+        var infowindows = {}
+        var markers = {}
+        var polys = {}
+        var path=[]
+        var bounds 
+        var groups =[]
+        var leakMarker
+        var eventTable = $('#events').DataTable({
+                searching: false, paging: false, info: false,"ordering": false,
+                "title":"Event Detection",
+                data: events,
+                columns: [
+                    { "title":"Node Name",
+                        data: "assetId",
+                        render:function(data){
+                            return assets[data].assetAlias
+                        }
+                    },
+                    { "title":"Time Detected",
+                        data: "time" 
+                    },
+                    { 
+                        "title":"distance from Node 0",
+                        data: "distance",
+                        render:function(data){
+                            return data+" ft"
+                        } 
+                    }
+                ]})
+        
+        var groupsTable = $('#groupstable').DataTable({
+                searching: false, paging: true, info: false,"ordering": true,
+                data: events,
+                columns: [
+                    { "title":"Time",
+                        data: "tl",
+                        render:function( data, type, row, meta ){
+                            return new Date((row.tl+row.th)/2).toLocaleString()
+                        }
+                    },
+                    { 
+                        "title":"Count",
+                        data: "i",
+                        render:function ( data, type, row, meta ){
+                            return row.events.map(function(ev){
+                                return assets[ev.assetId].assetAlias
+                            }).join(", ")
+                        } 
+                    },
+                    { 
+                        "title":"Load",
+                        data: "i",
+                        render:function ( data, type, row, meta ){
+                            return `<a onclick="loadGroup(${data})">Load</a>`
+                        } 
+                    },
+                    { 
+                        "title":"dt (ms)",
+                        data: "i",
+                        render:function ( data, type, row, meta ){
+                            return `<p>${getTimeDifference(row.events)}</p>`
+                        } 
+                    }
+                    ,
+                    { 
+                        "title":"Estimate",
+                        data: "i",
+                        render:function ( data, type, row, meta ){
+                            return `<p>${loadGroup(data)}</p>`
+                        } 
+                    }
+                ]})
+        groupsTable.page.len( 5).draw();
+        if(getParameterByName("SubSystem")){
+            subSystemName = getParameterByName("SubSystem")
+        }
+        if(getParameterByName("windowLength")){
+            windowLength = parseInt(getParameterByName("windowLength"))
+        }
+        function getTimeDifference(evs){
+            try{
+            //evs = evs.sort(function(e1,e2){return e1.timestamp - e2.timestamp})
+                return evs[(evs.length - 1)].timestamp - evs[0].timestamp
+            }
+            catch{return 0}
+        }
+        function init(){
+            var home = {lat: 29.7604, lng: -95.3698};
+            
+            bounds = new google.maps.LatLngBounds();
+            infowindow = new google.maps.InfoWindow({
+                content: "Leak Detected here"
+            });
+
+            map = new google.maps.Map(
+                document.querySelector('#map'), {
+                    zoom: 12,
+                    center: home
+                }
+            );
+
+            leakMarker = new google.maps.Marker({map: map});
+
+            leakMarker.addListener('click', function() {
+                infowindow.open(map,  leakMarker);
+            });
+
+            polys["poly"] = new google.maps.Polyline({
+                strokeColor: '#000000',
+                geodesic :true,
+                strokeOpacity: 1.0,
+                strokeWeight: 3
+
+            });
+            polys["poly"].setMap(map)
+            polys["path"] = new google.maps.Polyline({
+                                    strokeColor: '#000000',
+                                    geodesic :true,
+                                    strokeOpacity: 1.0,
+                                    strokeWeight: 3
+
+                                });
+            polys["path"].setMap(map)
+            loadAssets()
+        }
+        function loadAssets(){
+            $.get({
+                "url":"api/attributes/Sub System Name/"+subSystemName+"/assets",
+                success:function(data){
+                    for(var i = 0; i < data.length; i++){
+                        assets[data[i].assetId] = data[i]
+                        
+                        data[i].attributes=[{
+                            "attributeName":"%"
+                        }],
+                        data[i].events=[{
+                            "name":"%",
+                            "timestamp":"2019-05-23 00:00:00Z"
+                        }]
+                    }
+                    loadInfo()
+                }
+            })
+        }
+        function loadAttributes(assetId){
+            $(assets).each(function(){
+                $.get({
+                    "async":false,
+                    "url":"/api/assets/"+assetId+"/attributes",
+                    success:function(data){
+                        assets[assetId].attributes=data
+                    }
+                })
+            })
+            
+        }
+        function loadEvents(){
+            $.get({
+                "url":"api/attributes/Sub System Name/"+subSystemName+"/events",
+                success:function(data){
+                    //Populate some extra fields
+                    events = cleanEvents(data);
+                    handleEvents()
+                }
+            })
+        }
+        function loadInfo(){
+             console.log("sdfsdfsd")
+            $.ajax({
+                "type":"POST",
+                "url":"/api/AssetSearch",
+                "data":JSON.stringify({"Criteria":Object.keys(assets).map(i => assets[i])}),
+                "success":function(data,status,xhr){
+                    //Update Assets
+                    events=[]
+                    for(var i = 0; i < data.length; i++){
+                        Object.assign(assets[data[i].assetId], data[i])
+                        
+                        events = data[i].events ? events.concat(data[i].events) : events
+                        if(data[i].assetDefinitionName == "Pipeline"){
+                            $('#pipeline').DataTable({
+                                "title":"Pipeline Details",searching: false, paging: false, info: false,"ordering": false,
+                                    data:data[i].attributes ,
+                                    columns: [
+                                        { 
+                                            "title":"Key",
+                                            data: "attributeName"
+                                        },
+                                        { 
+                                            "title":"Value",
+                                            data: "attributeValue" ,
+                                            render:function(data){return data.length > 40? ". . . ." : data }
+                                        }
+                                    ]})
+                            if(getParameterByName("c")){
+                                c = parseFloat(getParameterByName("c"))
+                            }
+                            else{
+                            c = parseFloat(data[i].attributes.find(function(obj){return obj.attributeName.toLowerCase()=="speed of sound"}).attributeValue)
+                            }
+                            v = parseFloat(data[i].attributes.find(function(obj){return obj.attributeName.toLowerCase()=="fluid velocity"}).attributeValue)
+                            
+                            try{
+                                var pathPoints = JSON.parse(data[i].attributes.find(function(obj){return obj.attributeName.toLowerCase()=="path"}).attributeValue)
+                                path = pathPoints
+                                buildPath()
+                                polys.poly.setVisible(false)
+                            }
+                            catch(e){
+                            }
+                        
+                            
+                            
+                        }
+                        else{
+                            var Xa = parseFloat(data[i].attributes.find(function(obj){return obj.attributeName.toLowerCase()=="distance"}).attributeValue)
+                            Lt = Xa > Lt ? Xa : Lt
+                        }
+                    }
+                    placeMarkers()
+                    events = cleanEvents(events);
+                    window["events1"]= events
+                    handleEvents()
+                    
+                },
+                "error":function(xhr,status,error){
+                    console.log(error)
+                },
+                "contentType":"application/json"
+            })
+        }
+        
+        function buildPath(){
+            
+            var polyPath = polys["path"].getPath()
+            for(var i = 0 ; i < path.length ;i ++){
+                var coord = new google.maps.LatLng(path[i].lat,path[i].lng);
+                polyPath.push(coord)
+                bounds.extend(coord)
+            }
+            var i = path.indexOf(path.filter(obj =>{return (obj.validDistance === true)})[0]) + 1
+            while(i < path.length){
+                var nextValidLocation = path.slice(i+1).filter(obj =>{return (obj.validDistance === true)})[0]
+                var lastValidLocation = path.slice(0,i+1).reverse().filter(obj =>{return (obj.validDistance === true)})[0]
+                var lastValid = path.indexOf(lastValidLocation)
+                var nextValid = path.indexOf(nextValidLocation)
+                i = nextValid + 1;
+                console.log(lastValid+", "+nextValid)
+                
+                //If this was a valid point, move on from the next valid point.
+                if(nextValid == lastValid){
+                    continue;
+                }
+                //Calculate length of this length based on coordinates
+                var d = 0
+                for(var j = lastValid + 1; j <= nextValid; j++){
+                    d = d + google.maps.geometry.spherical.computeDistanceBetween(
+                    polys.path.getPath().getAt(j),
+                    polys.path.getPath().getAt(j-1)
+                    )/.3048
+                    path[j].coordDistance = d
+                }
+                //Calculate length of leg based on the known distances
+                var l = nextValidLocation.distance - lastValidLocation.distance 
+                console.log("Leg length from coords="+d+", leg length from valid data="+l)
+                
+                for(var j = lastValid + 1; j < nextValid; j++){
+                    path[j].distance = (parseFloat(lastValidLocation.distance) + (path[j].coordDistance*l/d) )
+                }
+            }
+            map.fitBounds(bounds)
+        }
+        function handleEvents(){
+            for(var i = 0 ; i < events.length; i++){
+                assets[events[i].assetId].event = events[i]
+                events[i].distance = parseFloat(assets[events[i].assetId].attributes.find(function(obj){return obj.attributeName.toLowerCase()=="distance"}).attributeValue)
+                events[i].validDistance = true;
+            }
+            eventTable.clear()
+            eventTable.rows.add(events)
+            eventTable.draw()
+            if(assets)
+            sortEventsTimestamp()
+            firstLocation = events[0]
+            
+            
+            nextDownstream = events.find(obj =>{return obj.distance > firstLocation.distance})
+            nextUpstream = events.find(obj => {return obj.distance < firstLocation.distance})
+            for(var i = 1 ; i < events.length; i++){
+                if(events[i].distance > firstLocation.distance){
+                    nextDownstream = events[i]
+                    break;
+                }
+                nextDownstream = firstLocation
+            }
+            for(var i = 1 ; i < events.length; i++){
+                if(events[i].distance < firstLocation.distance){
+                    nextUpstream = events[i]
+                    break;
+                }
+                nextUpstream = firstLocation
+            }
+            for(var i = 0 ; i < events.length; i++){
+                
+            }
+            if(events.length > 1){
+                x = averageCombos(Combinations().Success)
+                placeLeakMarker(x)
+                return x
+            }
+            else{
+                return null
+            }
+            
+            
+            
+            
+            
+        }
+        function placeMarker(asset) {
+            var latitude = asset.latitude
+            var longitude = asset.longitude
+            var location = {lat: latitude, lng: longitude};
+            var coord = new google.maps.LatLng(latitude, longitude);
+
+
+
+            //            var buffer = new ArrayBuffer(4);
+            //            var view = new DataView(buffer);
+            //view.setFloat32(0, asset.altitude);
+            if(asset.assetDefinitionId == 38 ){
+                var dist = parseFloat(asset.attributes.find(function(obj){return obj.attributeName.toLowerCase()=="distance"}).attributeValue)
+                var contentString = `<div style="color:black">Node ${asset.assetAlias}: ${dist} ft`
+                infowindows[asset.assetId] = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                var infowindow1 = infowindows[asset.assetId]
+
+                infowindow1.assetAlias = asset.assetAlias
+
+                markers[asset.assetId.toString()] = new google.maps.Marker({
+                    position: location, 
+                    map: map,
+                    icon: {url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"}
+                });
+                markers[asset.assetId.toString()].addListener('click', function() {
+                    infowindow1.open(map,  markers[asset.assetId]);
+                });
+
+                bounds.extend(markers[asset.assetId.toString()].position);
+
+                var poly = polys["poly"]
+                var path = poly.getPath()
+                //coord.lmSeq=view.getUint8(3)
+                path.push(coord)
+                path.j.sort(function(a,b){return a.lng() - b.lng()})
+                //path[view.getUint8(3)] = coor
+            }
+            else{
+                
+            }
+
+
+        }
+        function pad(n, width, z) {
+          z = z || '0';
+          n = n + '';
+          return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+        }
+        function placeMarkers(){
+            for (asset in assets){
+                placeMarker(assets[asset])
+            }
+            map.fitBounds(bounds);
+        }
+        function cleanEvents(data){
+            for(var i = 0 ; i < data.length; i++){
+                
+                
+            }
+            $(data).each(function(i,ev){
+                try{
+                    ev.meta = JSON.parse(ev.meta)
+                }
+                catch(e){}
+                
+                ev.ogTime = ""+ev.timestamp
+                
+                ev.timestamp = new Date(""+ev.timestamp+'Z').getTime()
+                var g =   new Date(ev.timestamp)
+                ev.time = (g.toLocaleTimeString()).replace(" ",("."+pad(g.getMilliseconds(),3)+" "))
+            })
+            //Limit to most recent occurence
+            data = data.sort(function(a,b){return a.timestamp - b.timestamp})
+            var cut = 0
+            
+            for(var i = 1 ; i < data.length; i++){
+                
+                var t = data[i].timestamp
+                
+                var group = groups.find(obj=>{return t < obj.th && t > obj.tl})
+                if(group){
+                    group.events.push(data[i])
+                }
+                else{
+                    groups.push({
+                        tl : (t - 1000*windowLength*Lt/c),
+                        th : (t + 1000*windowLength*Lt/c),
+                        events:[data[i]]
+                    })
+                }
+                if(data[i].timestamp -  data[i - 1].timestamp > windowLength*Lt/c * 1000){
+                    cut = i
+                }
+            }
+//            groups = groups.filter(obj=>{
+//                return [...new Set(obj.events.map(obj=>obj.assetId))].length > 1
+//            })
+             groups = groups.sort().reverse()
+            for(var  i = 0 ; i <groups.length ; i++){
+                groups[i].i=i
+                //gd.append(`<option value="${i}">Event ${new Date(groups[i].tl).toLocaleString()}</option>`)
+            }
+            var rem = []
+            for(var  i = 0 ; i <groups.length ; i++){
+                try{
+                    loadGroup(i)
+                }
+                catch(e){
+                    rem.push(i)
+                }
+            }
+            for(var  i = 0 ; i <rem.length ; i++){
+                groups.pop(rem[i])
+            }
+            
+            groupsTable.clear()
+           
+            for(var  i = 0 ; i <groups.length ; i++){
+                groupsTable.row.add(groups[i])
+                //gd.append(`<option value="${i}">Event ${new Date(groups[i].tl).toLocaleString()}</option>`)
+            }
+            groupsTable.draw()
+            return groups.sort()[0].events
+        }
+        function loadGroup(ii){
+            try{
+            
+            var grp = groups.find(obj=>{return obj.i == ii})
+            events = grp.events
+            //events = cleanEvents(events)
+            return handleEvents()
+            }
+            catch(e){
+                return null
+            }
+        }
+
+        function next(){
+            $('#groups').val(parseInt($('#groups').val()) +1)
+            $('#groups').change()
+        }
+        function back(){
+            $('#groups').val(parseInt($('#groups').val())-1)
+            $('#groups').change()
+        }
+        $('#groups').change(function(){
+            events = groups[$('#groups').val()].events
+            handleEvents()
+        })
+        function placeLeakMarker(ft){
+            //Get index of nearest nodes
+            var dEvents
+            var polyUsed
+            if(path.length > 0){
+                dEvents = path
+                polyUsed = polys.path
+            }
+            else{
+                dEvents = events.sort(function(a,b){return a.distance - b.distance})
+                polyUsed = polys.poly
+            }
+            
+            //Find flanking points with known valid distances
+            var firstPast = dEvents.filter(obj =>{return obj.distance > ft})[0]
+            var bIndex = dEvents.indexOf(firstPast)
+            var aIndex = bIndex - 1
+            var D = dEvents[bIndex].distance - dEvents[aIndex].distance
+            //Find what percentage between the two points the position is
+            var lRem = ft - dEvents[aIndex].distance
+            var pctRem  = lRem/(dEvents[bIndex].distance - dEvents[aIndex].distance)
+            //Infer distances in points between
+            
+            //Shove marker at the percentage between them, and good luck.
+            var p1 = polyUsed.getPath().getAt(aIndex)
+            var p2 = polyUsed.getPath().getAt(bIndex)
+            leakMarker.setPosition(new google.maps.LatLng( p1.lat() + (p2.lat()-p1.lat())*pctRem, p1.lng() + (p2.lng()-p1.lng())*pctRem))
+            infowindow.setContent(`<div style="color:black">Leak detected at ${ft} ft</div>`)
+        }
+        
+        function Combinations(){
+            var answer = 41
+            var margin = .01
+            var success = []
+            var fail = []
+            for(var i = 0 ; i < events.length; i++){
+                for(var j = i+1; j <events.length; j++){
+                    var result = {Na:i,Nb:j,res:estimate2(events[i],events[j])}
+                    if(result.res != null){
+                        success.push(result)
+                    }
+                    else{
+                        fail.push(result)
+                    }
+                }
+            }
+            return {Success:success,Failure:fail}
+        }
+        function averageCombos(combos){
+            var sum, avg = 0;
+            var results = [] 
+            for(var i = 0 ; i < combos.length; i++){
+                results.push(combos[i].res)
+            }
+            if (results.length)
+            {
+                sum = results.reduce(function(a, b) { return a + b; });
+                avg = sum / results.length;
+            }
+            return avg
+        }
+        function estimate(E1,E2,log){
+            if(log == null){log=false}
+            var Ea,Eb
+            if(E1.distance > E2.distance){
+                Eb = E1
+                Ea = E2
+            }
+            else{
+                Eb = E2
+                Ea = E1
+            }
+            var L = Math.abs(Ea.distance - Eb.distance)
+            
+            var dt = Math.abs((Eb.timestamp - Ea.timestamp)/1000)
+            
+            //Slow wave (c-v) defined upper null result bound
+            var nullDtMax = L/(c-v) + 1
+            //fast wave (c+v) defined lower null result bound
+            var nullDtMin = L/(c+v) - 1
+            
+            
+            var Xa = ((c - v)/(2*c)) * ((c+v)*dt + L)
+            var Xb = ((c + v)/(2*c)) * ((v-c)*dt + L)
+            var La = Ea.distance + Xa
+            var Lb = Eb.distance - Xb
+            //
+            if(log){
+                console.log("Upstream node at "+Ea.distance)
+                console.log("Downstream node at "+Eb.distance)
+                console.log("distance between: " + L)
+                console.log("Xa = "+Xa)
+                console.log("Xb = "+Xb)
+                console.log((La+Lb)/2)
+                console.log("Measured Time difference: " + dt)
+                console.log("Null Time difference: " + nullDtMin +" - " +nullDtMax)
+            }
+            return (La+Lb)/2
+        }
+        function estimate2(E1,E2,log){
+            if(log == null){log=false}
+            if(log){console.log("Estmation with logging.")}
+            var Ea,Eb
+            if(E1.distance > E2.distance){
+                Eb = E1
+                Ea = E2
+            }
+            else{
+                Eb = E2
+                Ea = E1
+            }
+            //var 
+            L = Math.abs(Ea.distance - Eb.distance)
+            //var 
+            dt = (Ea.timestamp - Eb.timestamp)/1000
+            
+            var nullDt = L/(c-v)
+            var nullMargin = .20
+            //if(Math.abs(nullDt - dt / nullDt) > nullMargin){
+            if(true){
+                 var Xj1=((c + v)/(2*c)) * ((c-v)*dt + L)
+            var Xi1 = ((v-c)/(2*c)) *((c+v)*dt - L) 
+            
+            var Xj2=((c + v)/(2*c)) * ((v-c)*dt + L)
+            var Xi2 =((c - v)/(2*c)) * ((v+c)*dt + L)
+            
+            
+            console.log("Measured Time difference: " + dt)
+
+            var La = Ea.distance + Xi1
+            var Lb = Eb.distance - Xj2
+            //
+            if(log){
+                console.log("Solution 1:")
+                console.log("Xi1 = "+Xi1+", Node i at "+Ea.distance+", estimation: "+(Ea.distance + Xi1))
+                console.log("Xj1 = "+Xj1+", Node j at "+Eb.distance+", estimation: "+(Eb.distance - Xj1))
+                console.log("L is "+(Eb.distance - Ea.distance)+", Xj+Xi = "+(Xj1+Xi1))
+                
+                console.log("Solution 2:")
+                console.log("Xi2 = "+Xi2+", Node i at "+Ea.distance+", estimation: "+(Ea.distance + Xi2))
+                console.log("Xj2 = "+Xj2+", Node j at "+Eb.distance+", estimation: "+(Eb.distance - Xj2))
+                console.log("L is "+(Eb.distance - Ea.distance)+", Xj+Xi = "+(Xj2+Xi2))
+            }
+            return Lb
+            }
+            else{
+                return null
+            }
+            
+           
+        }
+        function sortEventsdistance(){
+            events = events.sort(function(a,b){return a.distance - b.distance})
+        }
+        function sortEventsTimestamp(){
+            events = events.sort(function(a,b){return a.timestamp - b.timestamp})
+        }
+
+    </script>
+    <!--******************************************************************************************************-->
+    <!--#include virtual="/common/footer.html"-->
+
+</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsHjKyB_Rl2HzQ7CryAt1TcgMWJIb7_tE&callback=init&libraries=geometry"
+        async defer>
+</script>

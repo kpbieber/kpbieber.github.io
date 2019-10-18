@@ -1,0 +1,57 @@
+
+<html>
+  <title>Login</title>
+ <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+<div id="loginContainer" class=' row'>
+
+  <div  class='col m5 s12' style='border-right:1px solid rgba(255,255,255,.8)'>
+    <div class="login-box-container">
+      <div id="loginBox" class="loginBox">
+        <form style='box-shadow:none; margin-bottom: 0; padding-bottom: 0'>
+          <div class="input-field">
+              <input id="username" type="text" class="">
+              <label for="username" id="usernameLabel" class="">Username</label>
+          </div>
+          <div class="input-field">
+              <input id="password" type="password" class="">
+              <label for="password" id="passwordLabel" class="active password">Password</label>
+          </div>
+
+          <div class="input-field confirm">
+              <input id="confirm" type="password" class="">
+              <label for="confirm" id="confirmLabel" class="">Confirm Password</label>
+          </div>
+
+          <div class="input-field changeId">
+              <input id="changeid" type="password" class="">
+              <label for="changeid" id="changeidLabel" class="active">Password</label>
+          </div>
+          <!-- <label class="confirm">Confirm Password: <input id="confirm" type="password" name="confirm"></label><br>
+          <label class='changeId'>ChangeId: <input id="changeId" name="changeId"></label> -->
+          <p id="errorText" style="color:#f44336; margin: 0"></p>
+          <div style='margin-top:1.5rem'>
+            <div>
+              <a class="btn waves-effect waves-light login" style='width:100%'>Login</a>
+            </div>
+            <div style='position:absolute; bottom:10; left: 50%;transform: translate(-50%)'>
+              <a class="changePassword" style='text-align:center'>Reset Password</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id='logo-container' class='col m7 s12'>
+    <div class='logo-container'>
+      <img src='../css/images/LIMECLOUD-LOGO.png' alt='lime-logo' class='logo'>
+    </div>
+  </div>
+
+
+</div>
+
+  <script src="login/login.js"></script>
+  <!--#include virtual="/common/footer.html"-->
+</html>

@@ -1,0 +1,78 @@
+
+<html>
+    <title>Asset Groups</title>
+ <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+    <div class="container">
+        <div id="assetgroupsHeader">
+          <h1>Asset Groups</h1>
+          <div class="divider"></div>
+        </div>
+        <div id="main" class="container">
+          <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                 <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Asset Group</h6>
+          <form id="assetgroupForm">
+            <div class="input-field">
+              <input id="name" class="validate" type="text" required>
+              <label for="name">Asset Group Name</label>
+            </div>
+            <div class="input-field">
+              <input id="description" class="validate" type="text" required>
+              <label for="description">Description</label>
+            </div>
+            <button id="assetgroupSubmit"
+                    class="btn-small    waves-effect waves-light"
+                    type="submit"> Create
+            </button>
+          </form>
+<!--   <h6 class="center-align">Asset Groups</h6>-->
+          <div class='table-container'>
+            <table id="assetGroupTable" class="centered responsive-table">
+              <thead>
+                <th>Del</th>
+                <th>Edit</th>
+                <th>Name</th>
+                <th>Description</th>
+              </thead>
+            </table>
+          </div>
+        </div>
+<!--********************************* EDIT ASSET GROUP LISTS *********************************************-->
+        <div id="editList" class="container hide">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                            <i class="material-icons">add</i></a>&nbsp;&nbsp;Add Asset </h6>
+
+                        <form id="addAssetForm" >
+                            <div class="input-field">
+                                <select id="outAssets" class="validate" multiple required>
+                                    <option value="default" disabled selected style="color:#9e9e9e" >Choose Asset</option>
+                                </select>
+                                <label for='outAssets'>Choose Assets</label>
+                            </div>
+                            <button id="assetSubmit"
+                                    class="btn-small    waves-effect waves-light"
+                                    type="submit"> Add
+                            </button>
+                        </form>
+
+                        <h5 class="center-align">Assets in <span id="assetGroupName"></span></h5>
+                        <table id="assetGroupAssetsList" class="centered responsive-table">
+                            <thead>
+                                <th>Del</th>
+                                <th>Name</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                        <button class="btn-small    waves-effect waves-light" onclick="backToMain()">Go back</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+ <!--#include virtual="/common/footer.html"-->
+  <script src="assetgroups/assetgroups.js"></script>
+</html>

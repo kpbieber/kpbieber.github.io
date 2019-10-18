@@ -1,0 +1,57 @@
+<div id="header">
+  <nav id="lcNav" class="nav-extended ">
+      <div class="nav-wrapper container">
+        <a href="" class="brand-logo light-green-text text-darken-3"></a>
+        <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+         <li><a href="">Home</a></li>
+<!--  		<li><a class="dropdown-trigger" href="#!" data-target="systemsDropdown">Systems<i class="material-icons right">arrow_drop_down</i></a></li>-->
+          <li><a class="dropdown-trigger" href="#!" data-target="assetsDropdown">Assets<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="dropdown-trigger" href="#!" data-target="groupsDropdown">Admin<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li><a class="logout" onclick="logout()">Logout</a></li>
+        </ul>
+      </div>
+      <div id="assetTabs" class="nav-content container"></div>
+  </nav>
+
+ <ul id="systemsDropdown" class="dropdown-content">
+	<li><a href="systems/list.shtml">Systems</a></li>
+	<li><a href="systems/definitions/">System Definitions</a></li>
+</ul>
+
+  <ul id="assetsDropdown" class="dropdown-content">
+<!--  	<li><a href="assets/">Assets</a></li>-->
+  	<li><a href="assets/list.shtml">Asset List</a></li>
+  	<li><a href="assetdefinitions/">Asset Def List</a></li>
+  </ul>
+
+  <ul id="groupsDropdown" class="dropdown-content">
+  	<li><a href="users/">Users</a></li>
+  	<li><a href="usergroups/">User Groups</a></li>
+  	<li><a href="assetgroups/">Asset Groups</a></li>
+  </ul>
+
+
+  <!--MOBILE NAV -->
+  <ul class="sidenav" id="mobile">
+      <li><a href="">Home</a></li>
+      <li><a href='systems/'>Systems</a></li>
+      <li><a href='assets/'>Assets</a></li>
+      <li><a href="usergroups/">Groups</a></li>
+      <li><a class="logout" onclick="logout()">Logout</a></li>
+  </ul>
+</div>
+
+<script>
+    // CLICK LISTENER FOR SIDENAV IN MOBILE
+    $(document).ready(function(){
+        $('.sidenav').sidenav();
+		    $(".dropdown-trigger").dropdown();
+    });
+    //fixAbsoluteUri()
+    // LOGOUT FUNCTION
+    function logout() {
+        $.ajax({async:false,type:"GET",url:api+'/Auth/Logout'});
+        window.location.href='/login/logout.shtml'
+    }
+</script>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<title>Alarms</title>
+<html>
+     <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+  <div class="container">
+    <div id="modelHeader" >
+      <h1 id="modelName" class="truncate"></h1>
+      <div class="divider"></div>
+      <div class="section"></div>
+    </div>
+    <div id="alarmFormContainer" class="">
+        <h6><a id="createBtn" class="createBtn btn-floating waves-effect waves-light "><i class="material-icons">add</i></a>&nbsp;&nbsp;Create new alarm</h6>
+        <form id="alarmForm">
+          <input id="name" class="" type="text" placeholder="Name..." required>
+          <input id="reason" class="" type="text" placeholder="Reason..." >
+          <input id="severity" class="" type="number" placeholder="Severity..." required>
+          <input id="escalation" class="" type="number" placeholder="Escalation..." required>
+          <input id="expiration" class="" type="number" placeholder="Expiration..." required>
+          <div class="input-field">
+          <select id="selfAck" class="">
+            <option value="true" selected>true</option>
+            <option value="false">false</option>
+          </select>
+          </div>
+          <div class="">
+            <button id="newalarmSubmit" class=" btn-small   waves-effect waves-light" type="submit" value="Create">Create </button>
+          </div>
+        </form>
+    </div>
+
+    <div id="alarmTableContainer" class="">
+      <h5 class="center-align" style="margin-top:0" >Alarms</h5>
+      <table id="alarmTable" class="centered responsive-table">
+        <thead>
+          <tr>
+            <th id="delHead" class="delCol">Del</th>
+            <th class="editCol">Edit</th>
+            <th>Name</th>
+            <th>Reason</th>
+            <th>Severity</th>
+            <th>Escalation</th>
+            <th>Expiration</th>
+            <th>Self Ack</th>
+            <th>Calculations</th>
+          </tr>
+        </thead>
+        <tbody id="alarmList">
+            <!-- TABLE IS POPULATED VIA JS -->
+        </tbody>
+      </table>
+      <a id="backBtn" href="assetdefinitions/configure/">Go back</a>
+    </div>
+  </div>
+    <!--********************** CALCULATIONS DIALOG BOX *************************************-->
+    <div id="calculationDialog" class="dialog modal">
+      <h3 id="calcAlarmDefinitionId"></h3>
+      <h6><a id="calcCreateBtn" class=" createBtn btn-floating waves-effect waves-light "><i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Calculation</h6>
+
+      <form id="calcForm">
+        <div id="calculationForm" >
+          <div class='input-field'>
+            <select id="dataPointSelect" class=""  required>
+              <option value="" selected disabled>Data Points</option>
+            </select>
+          </div>
+          <div class='input-field'>
+            <select id="operator" class="" required>
+              <option value="" selected default disabled>Comparator</option>
+              <option value="=" >=</option>
+              <option value="!=">!=</option>
+              <option value=">">></option>
+              <option value="<">&lt;</option>
+              <option value=">=">>=</option>
+              <option value="<=">&lt;=</option>
+            </select>
+          </div>
+          <input id="value" type="number" class="text" placeholder="Value..." required>
+          <input id="maxFreq" type="number" class="text" placeholder="Max Freq...">
+          <br>
+          <!-- Allow form submission with keyboard without duplicating the dialog button -->
+          <button id="newCalcSubmit" type="submit" class=" btn-small   waves-effect waves-light">Create</button>
+        </div>
+      </form>
+      <table id="calcTable" class="centered">
+        <thead>
+          <tr>
+            <th id="delHead" class="delCol"></th>
+            <th>Data Point</th>
+            <th>Operator</th>
+            <th>Value</th>
+            <th>Max Freq</th>
+          </tr>
+        </thead>
+        <tbody id="calcList">
+            <!-- TABLE IS POPULATED VIA JS -->
+        </tbody>
+      </table>
+
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves- btn-flat">Close</a>
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat assetSubmitBtn">Submit</a>
+      </div>
+    </div>
+     <!-- #include virtual="\common/footer.html"-->
+    <script src="assetdefinitions/configure/alarms/alarms.js">//PAGE SPECIFIC JS</script>
+    <script src="assetdefinitions/configure/alarms/alarmCalculations.js"></script>
+</html>

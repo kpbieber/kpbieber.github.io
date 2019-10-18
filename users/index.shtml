@@ -1,0 +1,50 @@
+
+<html>
+    <title>Users</title>
+   <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+    <div class="container">
+
+        <div id="userHeader">
+            <h1>Users</h1>
+            <div class="divider"></div>
+        </div>
+        <div class="section">
+
+            <div class="container">
+                <h6><a class="createBtn btn-floating waves-effect waves-light " ><i class="material-icons">add</i></a>&nbsp;&nbsp;Create New User</h6>
+                <form id="userForm">
+                    <input required id="username" type="email" placeholder="Email">
+                    <div class="input-field col s12">
+                      <select id='usergroups' required >
+                        <option value="" disabled selected>Select User Group</option>
+                      </select>
+                      <label>Assign to a User Group</label>
+                    </div>
+                    <div>
+                        <button
+                          id="userSubmit"
+                          class="btn-small waves-effect waves-light"
+                          value="Create"
+                          type="submit"> Create
+                        </button>
+                    </div>
+                </form>
+<!-- <h6 class="center-align">Users</h6> -->
+              <div class='table-container'>
+                <table id="userTable" class="centered">
+                    <thead>
+                        <th>Del</th>
+                        <th>Username</th>
+                    </thead>
+                    <tbody id="userList">
+                    </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="users/users.js"></script>
+   <!--#include virtual="/common/footer.html"-->
+</html>

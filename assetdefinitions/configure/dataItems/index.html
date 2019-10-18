@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" href="../../../favicon.png">
+      <title>Data Items</title>
+
+      <!-- Dependencies: jquery 3.3.1, material css -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+      <link rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css">
+      <script src="../../../node_modules/jquery/dist/jquery.min.js"> </script>
+      <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+      <!-- Personal CSS -->
+      <link href="../../../css/stylesTest.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div id="header">
+            <script>
+                $(function(){
+                    $("#header").load("../../../common/header.html");
+                  //$("#footer").load("/common/footer.html");
+                });
+            </script>
+        </div>
+<!--******************************************************************************************************-->
+       <div class="container">
+            <div id="modelHeader">
+                <h1 id="modelName" class="truncate"></h1>
+                <div class="divider"></div>
+                <div class="section"></div>
+            </div>
+
+            <div id="formContainer" class="">
+                <h6><a id="createBtn" class="createBtn btn-floating waves-effect waves-light "><i class="material-icons">add</i></a>&nbsp;&nbsp; Create new data item </h6>
+                <form id="dataItemForm" class="">
+                    <div class="row">
+                        <input id="userLabel" class="" type="text" placeholder="label/name..." required>
+                        <input id="userUnit" class="" type="text" list="units" autocomplete="off" placeholder="unit..." required>
+                            <datalist id="units">
+                                <option value="&#176;F"></option>
+                                <option value="psi"></option>
+                                <option value="atm"></option>
+                                <option value="RPM"></option>
+                                <option value="hrs"></option>
+                                <option value="barrels"></option>
+                                <option value="gal/min"></option>
+                                <option value="in"></option>
+                            </datalist>
+                        <input id="defaultValue" class="col " type="text" placeholder="default value..." required>
+                        <button id="dataitemSubmit"
+                                class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                                type="submit"> Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="dataItemsContainer" class="">
+              <h5 class="center-align" style="margin-top:0" >Data Items</h5>
+                <table id="dataitemsTable" class="centered">
+                    <thead>
+                        <tr>
+                          <th id="delHead" class="delCol">Del</th>
+                          <th>Label</th>
+                          <th>Unit</th>
+                          <th>Default Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataitemsList">
+                    </tbody >
+                </table>
+                 <a id="backBtn" href="../index.html">Go back</a>
+            </div>
+           <div id="footer"></div>
+        </div>
+<!--******************************************************************************************************-->
+         <script src="../../../common/js/lime.js">//LOGIN STATUS JS</script>
+        <script src="dataItems.js">//PAGE SPECIFIC JS</script>
+    </body>
+</html>

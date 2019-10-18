@@ -1,0 +1,43 @@
+<html>
+
+<!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+    <div class="container">
+        <div id="ugHeader">
+             <h1>UserGroup</h1>
+             <h3 id="usergroupName" class="truncate"></h3>
+             <div class="divider"></div>
+             <div class="section"></div>
+        </div>
+        <div id="editList" class="container">
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <form id="addPermForm" >
+                            <div class="input-field">
+                                <select id="outPerms" class="" multiple required>
+                                    <option value="Choose Permission" disabled selected></option>
+                                </select>
+                                <label for='outPerms'>Add Permission</label>
+                            </div>
+                            <div>
+                              <button id="permSubmit"
+                                      class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                                      type="submit"> Add
+                              </button>
+                            </div>
+                        </form>
+                        <h5 class="center-align" style="color: #558b2f">Permissions</h5>
+                        <table id="permTable" class="centered">
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <a class="goBack" href="../" class="">Go back</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+<!--<script src='/js/lime.js'></script>-->
+<script src="common/js/lime.js"></script>
+<script src="usergroups/group/permissions/permissions.js"></script>
+</body>
+</html>

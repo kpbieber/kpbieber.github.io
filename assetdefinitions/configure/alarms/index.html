@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../favicon.png">
+        <title>Alarms</title>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+              integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  for icons 
+        <link rel="stylesheet" href="../../../node_modules/materialize-css/dist/css/materialize.min.css">
+        <script src="../../../node_modules/jquery/dist/jquery.min.js"> </script>
+        <script src="../../../node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+        <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous">
+        </script>
+
+        <link href="../../../css/stylesTest.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div id="header">
+          <script>
+            $(function(){
+              $("#header").load("../../../common/header.html");
+           
+            });
+          </script>
+        </div>
+<!--******************************************************************************************************-->
+        <div class="container">
+            <div id="modelHeader" >
+                <h1 id="modelName" class="truncate"></h1>
+                <div class="divider"></div>
+                <div class="section"></div>
+            </div>
+            <div id="alarmFormContainer" class="">
+                <h6><a id="createBtn" class="createBtn btn-floating waves-effect waves-light "><i class="material-icons">add</i></a>&nbsp;&nbsp;Create new alarm</h6>
+                <form id="alarmForm">
+                        <input id="name" class="" type="text" placeholder="Name..." required>
+                        <input id="reason" class="" type="text" placeholder="Reason..." >
+                        <input id="severity" class="" type="number" placeholder="Severity..." required>
+                        <input id="escalation" class="" type="number" placeholder="Escalation..." required>
+                        <input id="expiration" class="" type="number" placeholder="Expiration..." required>
+                        <div class="input-field">
+                        <select id="selfAck" class="">
+                            <option value="true" selected>true</option>
+                            <option value="false">false</option>
+                        </select>
+                        </div>
+                        <div class="">
+                            <button id="newalarmSubmit" class=" btn-small cyan darken-3 waves-effect waves-light" type="submit" value="Create">Create </button>
+                        </div>
+                </form>
+            </div>
+
+            <div id="alarmTableContainer" class="">
+                <h5 class="center-align" style="margin-top:0" >Alarms</h5>
+                <table id="alarmTable" class="centered responsive-table">
+                    <thead>
+                        <tr>
+                            <th id="delHead" class="delCol">Del</th>
+                            <th class="editCol">Edit</th>
+                            <th>Name</th>
+                            <th>Reason</th>
+                            <th>Severity</th>
+                            <th>Escalation</th>
+                            <th>Expiration</th>
+                            <th>Self Ack</th>
+                            <th>Calculations</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alarmList">
+                        <!-- TABLE IS POPULATED VIA JS -->
+                    </tbody>
+                </table>
+                <a id="backBtn" href="../">Go back</a>
+            </div>
+    </div>
+    <!--********************** CALCULATIONS DIALOG BOX *************************************-->
+        <div id="calculationDialog" class="dialog">
+          <h3 id="calcAlarmId"></h3>
+          <h6><a id="calcCreateBtn" class="btn-floating waves-effect waves-light "><i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Calculation</h6>
+
+          <form id="calcForm">
+                <div id="calculationForm" >
+                    <select id="dataPointSelect" class="browser-default" required>
+                        <option value="" selected>Data Points</option>
+                    </select>
+
+                    <select id="operator" class="browser-default">
+                        <option value="=" selected>=</option>
+                        <option value="!=">!=</option>
+                        <option value=">">></option>
+                        <option value="<">&lt;</option>
+                        <option value=">=">>=</option>
+                        <option value="<=">&lt;=</option>
+                    </select>
+
+                    <input id="value" type="number" class="text" placeholder="Value..." required>
+                    <input id="maxFreq" type="number" class="text" placeholder="Max Freq...">
+                    <br>
+                    <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                    <button id="newCalcSubmit" type="submit" class=" btn-small cyan darken-3 waves-effect waves-light">Create</button>
+                </div>
+
+          </form>
+
+          <table id="calcTable" class="centered">
+
+                    <thead>
+                        <tr>
+                            <th id="delHead" class="delCol"></th>
+                            <th>Data Point</th>
+                            <th>Operator</th>
+                            <th>Value</th>
+                            <th>Max Freq</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="calcList">
+                        <!-- TABLE IS POPULATED VIA JS -->
+                    </tbody>
+
+                </table>
+
+        </div>
+         <!--********************************************************************************-->
+
+
+
+<!--******************************************************************************************************-->
+        <div id="footer"></div>
+
+         <script src="../../../common/js/lime.js">//LOGIN STATUS JS</script>
+        <script src="alarms.js">//PAGE SPECIFIC JS</script>
+        <script src="alarmCalculations.js"></script>
+    </body>
+</html>

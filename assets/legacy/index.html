@@ -1,0 +1,110 @@
+
+<html>
+<head>
+
+<title>Assets</title>
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="YES">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <link rel="icon" href="/favicon.png">
+    
+    <!-- LEGACY STYLESHEETS -->
+    <link rel="stylesheet" href="assets.css"/>
+    
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    
+    <script
+          src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+          integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+          crossorigin="anonymous">
+    </script>
+    
+    
+<!--    GOOGLE MATERIALIZE LIB AND NEW SYTLES SHEET-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        
+    <link href="/css/stylesTest.css" rel="stylesheet" type="text/css">
+    
+    <script src="/js/jquery-ui/jquery-ui.js"></script> 
+    <script src="/js/tablesort/tablesort.js"></script> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAChXxGr5przEkdm3_WqnKMdvXgnIcp6qU"></script>
+</head>
+
+<body>
+    
+    <div id="header">
+            <script>
+                $(function(){
+                    //$('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                    $("#header").load("/common/header.html"); 
+                });
+            </script>
+    </div>
+<!--******************************************************************************************************-->
+    
+    <div class="main">  
+
+      <div class="content">
+          
+          
+        <div>
+            <ul id="switchmode" class="mobile">
+              <li class="show list" onclick="showList()"><a >List</a></li>
+              <li class="show both" onclick="showBoth()"><a >Both</a></li>
+              <li class="show map" onclick="showMap()"><a>Map</a></li>
+            </ul>
+        </div>
+          
+        <div class="panel-container">
+            <div id="list">
+                <input type="text" id="salias" onchange = "search()" placeholder="Alias">
+                <input type="text" id="sserial" onchange = "search()" placeholder="Serial">
+                <input type="text" id="smodel" onchange = "search()" placeholder="Model">
+
+                <table id="assetTable"></table>
+            </div>
+
+            <div id="slider"></div>
+
+            <div id="mapcontainer">
+                <div id="map"></div>
+            </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  
+    
+<!--************************************** ASSET DIALOG BOXES *************************************************-->
+    <div class="assetEdit dialog" >
+        <label>Asset Alias: <input type=text class="alias"></label><br>
+        <label>Description: <textarea class="description"></textarea></label><br>
+        <table class="attributes centered"></table>
+        <button class="assetDelete">Delete Asset</button><br>
+    </div>
+
+    <div class="attribute dialog" >
+      <label>Attribute Name: <input type=text class="new name"></label><br>
+      <label>Value: <input type=text class="new value"></label><br>
+    </div>
+    
+    
+    <script src='/js/lime.js'></script>
+    <script src="assets.js"></script>
+    <script>google.maps.event.trigger(map, "resize");</script>
+</body>
+</html>
+

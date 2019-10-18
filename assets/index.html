@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../favicon.png">
+
+        <title>Assets</title>
+
+        <!-- Dependencies: jquery 3.3.1, material css -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+        <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+        <script src="../node_modules/jquery/dist/jquery.min.js"> </script>
+        <script src="../node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+
+        <!-- Personal CSS -->
+        <link href="../css/stylesTest.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+
+        <div id="header">
+            <script>
+                $(function(){
+                    //$('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                    $("#header").load("../common/header.html");
+                    //$("#footer").load("/common/footer.html");
+                });
+            </script>
+        </div>
+<!--******************************************************************************************************-->
+        <div class="container">
+
+            <div id="groupHeader" class="section">
+                <h1>Assets</h1>
+                <div class="divider"></div>
+            </div>
+
+            <div class="section row container">
+
+				<div class="col s12 m6 box">
+          <div class="card">
+            <div class="card-content">
+    					<a href="list.html"><i class="large material-icons">power</i></a>
+    					<p>View Your Asset List</p>
+            </div>
+            <div class="card-content card-bottom">
+              <a class="link cyan cyan darken-3 waves-effect waves-light" href="list.html">Assets</a>
+            </div>
+          </div>
+				</div>
+
+				<div class="col s12 m6 box">
+          <div class="card">
+            <div class="card-content">
+    					<a href="../assetdefinitions/"><i class="large material-icons">build</i></a>
+    					<p>Build dashboards, manage definitions</p>
+            </div>
+            <div class="card-content card-bottom">
+    					<a class="link cyan darken-3 waves-effect waves-light" href="../assetdefinitions/">Asset Definitions</a>
+            </div>
+          </div>
+				</div>
+            </div>
+
+			<div class="section row container">
+				<p><strong>Assets</strong> - A list and description of all your current Assets. You can change an asset name, description, and modify its attributes from this page. Each asset contains a link to view its personal dashboard as defined by its definition type.</p>
+				<br>
+				<p><strong>Asset Definitions</strong> - A list of all current asset definitions you have defined. You can create new definitions as well as manage and configure current one. Specifically, you can add and remove alarms and data items for each definition. Here you can build dashboards for each definition type, which can then be viewed through an asset of that definition type.</p>
+            </div>
+
+        </div>
+
+
+<!--******************************************************************************************************-->
+
+        <script src="../common/js/lime.js">//LOGIN STATUS JS</script>
+    </body>
+</html>

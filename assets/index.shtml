@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <title>Assets</title>
+    <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+        <div class="container">
+            <div id="groupHeader" class="section">
+                <h1>Assets</h1>
+                <div class="divider"></div>
+            </div>
+
+            <div class="section row container">
+
+				<div class="col s12 m6 box">
+          <div class="card">
+            <div class="card-content">
+    					<a href="assets/list.shtml"><i class="large material-icons">power</i></a>
+    					<p>View Your Asset List</p>
+            </div>
+            <div class="card-content card-bottom">
+              <a class="link    waves-effect waves-light" href="assets/list.shtml">Assets</a>
+            </div>
+          </div>
+				</div>
+
+				<div class="col s12 m6 box">
+          <div class="card">
+            <div class="card-content">
+    					<a href="assetdefinitions/"><i class="large material-icons">build</i></a>
+    					<p>Build dashboards, manage definitions</p>
+            </div>
+            <div class="card-content card-bottom">
+    					<a class="link   waves-effect waves-light" href="assetdefinitions/">Asset Definitions</a>
+            </div>
+          </div>
+				</div>
+            </div>
+
+			<div class="section row container">
+				<p><strong>Assets</strong> - A list and description of all your current Assets. You can change an asset name, description, and modify its attributes from this page. Each asset contains a link to view its personal dashboard as defined by its definition type.</p>
+				<br>
+				<p><strong>Asset Definitions</strong> - A list of all current asset definitions you have defined. You can create new definitions as well as manage and configure current one. Specifically, you can add and remove alarms and data items for each definition. Here you can build dashboards for each definition type, which can then be viewed through an asset of that definition type.</p>
+            </div>
+
+        </div>
+
+
+<!--******************************************************************************************************-->
+        <!--#include virtual="/common/footer.html"-->
+
+</html>

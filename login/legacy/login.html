@@ -1,0 +1,76 @@
+<div class="loginBox">
+          <label>Username: <input id="username" type="text" name="username"></label><br>
+          <label class="password">Password: <input id="password" type="password" name="password"></label><br>
+          <label class="confirm">Confirm: <input id="confirm" type="password" name="confirm"></label><br>
+          <label class='changeId'>ChangeId: <input id="changeId" name="changeId"></label><br>
+          <p id="errorText" style="color:"></p>
+          <a class="ui-button login">Login</a>
+          <a class="ui-button changePassword">Reset Password</a>
+    </div>
+
+<style>
+        #errorText{
+            clear:both;
+            line-height:28px
+        }
+        .loginBox{
+            margin:auto;
+            border:2px solid black;
+            border-radius:5px;
+            width:200px;
+            background:#333;
+            padding:40px;
+            vertical-align: middle;
+        }
+        label{
+            color:white;
+            float:right;
+            margin:12px;
+        }
+        .changeId,.confirm{
+            display:none;
+        }
+    </style>
+    <script>
+        var changeId,username
+        $('#errorText').html(getParameterByName('error'))
+        if(getParameterByName('changeId')){
+            changeId=getParameterByName('changeId')
+            username=getParameterByName("username")
+            $('.confirm').show()
+            $('.changeId').show()
+            $('.changePassword').hide()
+            $('#changeId').val(changeId)
+            $('#username').val(username)
+            $('.login').html("Change Password")
+            $('.login').click(function(){
+              if($('#password').val() == $('#confirm').val()){
+                userCompletePasswordChange($('#username').val(), $('#password').val(),$('#changeId').val())
+              }
+             
+            });
+        }
+        
+        else{
+            $('.login').click(function(){
+              sessionStorage.username = $('#username').val()
+                login( $('#username').val(), $('#password').val())
+            })
+            $('.changePassword').click(function(){
+                $('.password').hide()
+                $('.changePassword').hide()
+                $('.login').unbind("click")
+                $('.login').html("Send")
+                $('.login').click(function(){
+                    userInitPasswordChange($('#username').val())
+                })
+            })
+
+            $("#password").keypress(function(e){
+                if(e.which==13){
+                   sessionStorage.username = $('#username').val()
+                    login( $('#username').val(), $('#password').val())
+                }
+            })
+        }
+    </script>

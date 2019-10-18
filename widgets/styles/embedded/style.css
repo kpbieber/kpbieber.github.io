@@ -1,0 +1,23 @@
+body {
+  margin:0px;
+  padding:0px;
+  overflow:hidden;
+}
+html{
+    background-image:none!important;
+    background-color:transparent;
+}
+ni-front-panel{
+  height:auto!important;
+  width:auto!important;
+  border:0px!important;
+  min-height:0px!important;
+  padding:0px!important;
+  margin:0px!important;
+}
+
+ni-flexible-layout-container{
+    margin:0px!important;
+    border:0px!important;
+    padding:0px!important
+}

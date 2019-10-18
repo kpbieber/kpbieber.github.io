@@ -1,0 +1,95 @@
+
+<!--
+<body>
+
+    <div class="progress"></div>
+    
+    <div id="list">
+      <label>Assets
+    <table id="assetTable"></table>
+          </label>
+        </div>
+    
+    <div id="slider"></div>
+    
+    <div id="map">
+
+        </div>
+    <div class="assetEdit dialog" >
+        <label>Asset Alias: <input type=text class="alias"></label><br>
+        <label>Description: <textarea class="description"></textarea></label><br>
+        <table class="attributes"></table>
+        <button class="assetDelete">Delete Asset</button><br>
+    </div>
+    <div class="attribute dialog" >
+      <label>Attribute Name: <input type=text class="new name"></label><br>
+      <label>Value: <input type=text class="new value"></label><br>
+    </div>
+
+    
+</body>
+-->
+
+
+<!--
+    <script src='/js/lime.js'></script>
+    <script>
+        function openAttributeEditor(attributeName,attributeValue){
+            $('.attribute.dialog').find('.new.name').val(attributeName)
+            $('.attribute.dialog').find('.new.value').val(attributeValue) 
+            $('.attribute.dialog').dialog("open")
+        }
+        $('.assetEdit').dialog({
+                autoOpen:false,
+                modal:true,
+                hide:{effect:"fade"},
+                  show:{effect:"fade"},
+                title:"Edit Asset",
+                buttons:[
+                    {text:"Apply",
+                     click:function(){
+                         assetSetAliasAndDescription(
+                             $(this).attr('assetId'),
+                             $('.alias').val(),
+                             $('textarea.description').val()
+
+                         )
+                     }
+                    },{
+                    text:"Cancel",
+                    click:function(){
+                        $( this ).dialog( "close" );
+                    }
+                    }
+                ]
+            })
+        $('.attribute.dialog').dialog({
+                autoOpen:false,
+                modal:true,
+                hide:{effect:"fade"},
+                show:{effect:"fade"},
+                title:"Edit Attribute",
+                buttons:[
+                    {text:"Apply",
+                     click:function(){
+                         assetSetAttribute(
+                             $('.assetEdit').attr('assetId'),
+                             $(this).find('.new.name').val(),
+                             $(this).find('.new.value').val() 
+                         )
+                         $( this ).dialog( "close" );
+                     }
+                    },{
+                    text:"Cancel",
+                    click:function(){
+                        $( this ).dialog( "close" );
+                    }
+                    }
+                ]
+            })
+        $('#assetTable').show()
+        getAssets('','','')
+
+    </script>
+-->
+

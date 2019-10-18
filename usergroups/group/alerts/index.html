@@ -1,0 +1,94 @@
+
+<html>
+<head>
+    <title>Alerts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="icon" href="/favicon.png">
+
+    <!-- Dependencies: jquery 3.3.1, material css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js"> </script>
+    <script src="/node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+    <!-- Personal CSS -->
+    <link href="/css/stylesTest.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+        <div id="header">
+            <script>
+                $(function(){
+                    $('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                    $("#header").load("/common/header.html");
+                });
+            </script>
+        </div>
+<!--******************************************************************************************************-->
+    <div class="main container">
+        <div id="ugHeader">
+             <h1>UserGroup</h1>
+             <h3 id="usergroupName" class="truncate"></h3>
+             <div class="divider"></div>
+             <div class="section"></div>
+        </div>
+        <div class="content ">
+            <div class="">
+                <h6><a class="createBtn btn-floating waves-effect waves-light red">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New Alert</h6>
+                <form id="alertForm" class="">
+                    <div class="input-field">
+                        <select id="assetgroup" class="validate" required aria-required="true">
+                            <option value='default' disabled selected>Choose AssetGroup</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                      <input id="minsev" class='validate' type="number" required>
+                      <label for="minsev">Min Severity</label>
+                    </div>
+                    <div class="input-field">
+                      <input id="maxsev" class='validate' type="number" required>
+                      <label for="maxsev">Max Severity</label>
+                    </div>
+                    <div class="input-field">
+                        <select id="status">
+                            <option disabled selected>Choose Status</option>
+                            <option>OPEN</option>
+                            <option>CLOSE</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select id="online">
+                            <option disabled selected>Online?</option>
+                            <option>true</option>
+                            <option>false</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button id="alertSubmit"
+                                class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                                value="Create"
+                                type="submit"> Create
+                        </button>
+                    </div>
+                </form>
+                <h6 class="center-align">Alerts</h6>
+                <table id="alertTable" class="centered responsive-table">
+                    <thead>
+                        <th>Del</th>
+                        <th>Asset Group</th>
+                        <th>Min Severity</th>
+                        <th>Max Severity</th>
+                        <th>Status</th>
+                        <th>Online</th>
+                    </thead>
+                    <tbody >
+                    </tbody>
+                </table>
+                 <a class="goBack" href="../" class="">Go back</a>
+            </div>
+        </div>
+    </div>
+    <script src=/common/js/loginStatus.js></script>
+    <script src="alerts.js"></script>
+</body>
+</html>

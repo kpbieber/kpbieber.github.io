@@ -1,0 +1,35 @@
+<div class='tabs-container'>
+  <div class='container'>
+    <ul class="tabs ">
+      <li class="tab"><a class=""  onclick="showList()">List</a></li>
+      <li class="tab"><a class="active" onclick="showBoth()">Both</a></li>
+      <li class="tab"><a class="" onclick="showMap()">Map</a></li>
+    </ul>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+      $('.tabs').tabs({});
+      showBoth()
+  });
+  function showBoth() {
+      $("#assetContainer").css("display", "block");
+      $("#mapContainer").css("display", "block");
+      //$("#greeting h1").addClass("hide");
+  }
+  //href="#assetContainer,#mapContainer"
+  function showList() {
+      if ($("#mapContainer").css("display") === "block") {
+          $("#mapContainer").hide();
+          $("#assetContainer").css("display", "block");
+          //$("#greeting h1").removeClass("hide");
+      }
+  }
+  function showMap() {
+      if ($("#assetContainer").css("display") === "block") {
+          $("#assetContainer").hide();
+          $("#mapContainer").css("display", "block");
+          //$("#greeting h1").removeClass("hide");
+      }
+  }
+</script>

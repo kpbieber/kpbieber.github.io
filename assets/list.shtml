@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<title>Assets</title>
+<html>
+    <!--#include virtual="/common/head.html"-->
+    <!--#include virtual="/assets/assetTabs.html"-->
+
+<!--******************************************************************************************************-->
+        <div id="flexContainer">
+					<div id="assetContainer" class="container animated fadeIn ">
+							<div id="greeting" class="section">
+									<h3 >Asset List</h3>
+									<div class="divider"></div>
+							</div>
+
+							<div class="section ">
+                <div class="input-field" style="width: 33%; display:inline-block">
+                  <input id="search" type='text' autocomplete="off">
+                  <label for="search">Search</label>
+                </div>
+                <div class="page-length-container" style="float:right">
+                  <label>Show Rows</label>
+                  <select name="page-length" id="page-length">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+                <div class='table-container'>
+									<table
+                    class="table-assets highlight mdl-data-table"
+                    data-page-length="10"
+                    data-order='[[6, "desc"]]'>
+											<thead>
+													<tr>
+															<th>Del</th>
+															<th>Edit</th>
+															<th>Name</th>
+															<th>Serial #</th>
+															<th>Model</th>
+															<th></th>
+															<th>Last Contact</th>
+															<th>Desc</th>
+													</tr>
+											</thead>
+
+											<tbody id="assetTable">
+													<!--  TABLE CONTENTS LOADED BY JS    -->
+											</tbody>
+
+									</table>
+                </div>
+							</div>
+					</div>
+
+					<div id="mapContainer" class="container animated fadeIn ">
+						 <div id="map"></div>
+						 <script src="assets/map.js"></script>
+						 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsHjKyB_Rl2HzQ7CryAt1TcgMWJIb7_tE&callback=initMap"
+							  async defer>
+              </script>
+					</div>
+        </div>
+
+<!--**************************************** MODAL ***********************************************-->
+
+        <div id="modal1" class="modal">
+           <h4 id="assetName" assetId></h4>
+
+            <div class="input-field">
+                <input id="assetAlias" type="text" class="">
+                <label for="assetAlias" id="assetAliasLabel" class="active">Asset Alias</label>
+            </div>
+
+            <div class="input-field">
+              <textarea id="assetDescription" type="text" class="materialize-textarea"></textarea>
+              <label for="assetDescription" id="assetDescriptionLabel">Description</label>
+            </div>
+
+            <h5>Coordinates</h5>
+                <div style="height:200px;" id="modalmap">
+                </div>
+
+            <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create Attribute</h6>
+
+            <form id="attrForm" >
+                <div class="input-field">
+                    <input id="attrName" type="text" class="">
+                    <label for="attrName">Attribute Name</label>
+                </div>
+
+                <div class="input-field">
+                    <input id="attrValue" type="text" class="">
+                    <label for="attrValue">Attribute Value</label>
+                </div>
+
+                <div class="">
+                    <button id="attrSubmit" class=" btn-small   waves-effect waves-light" type="submit" value="Create">Create </button>
+                </div>
+            </form>
+
+            <h5>Attributes</h5>
+                <table >
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Value</th>
+                            <th>Edit</th>
+                            <th>Del</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modalTable">
+
+                    </tbody >
+                </table>
+
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves- btn-flat">Close</a>
+                <a class=" modal-action modal-close waves-effect waves-green btn-flat assetSubmitBtn">Submit</a>
+            </div>
+        </div>
+
+<!-- ****************************************************************************************************** -->
+
+
+    <!--#include virtual="/common/footer.html"-->
+
+    <script src="assets/assets.js">//PAGE SPECIFIC JS</script>
+</html>

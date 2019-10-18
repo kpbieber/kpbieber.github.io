@@ -1,0 +1,110 @@
+<head>
+    <base href='/'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!-- <meta name="theme-color" content="#005EB6"> -->
+     <link rel="icon" href="favicon.png"> <!--for weir /css/images/favicon.png -->
+    <!-- Dependencies css & js: jquery 3.3.1, material css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="js/libs/jquery-ui/jquery-ui.css" />
+    <script src="css/materialize/js/materialize.min.js"> </script>
+    <link rel="stylesheet"type="text/css"href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script
+      type="text/javascript"charset="utf8"src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js">
+    </script>
+    <!-- <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css"> -->
+    <!--<script
+                src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+                integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+                crossorigin="anonymous">
+    </script> -->
+    <!--    <script src="node_modules/jquery/dist/jquery.min.js"> </script>-->
+    <!-- Personal CSS -->
+    <link href="css/style.css?v=1.1" rel="stylesheet" type="text/css">
+    <!-- Server JS and Lime.js -->
+    <script>
+      var ua = window.navigator.userAgent;
+      var isIE = /MSIE|Trident/.test(ua);
+      if(isIE){
+        alert("You are using internet Explorer. Please use Chrome, Firefox, or Edge.")
+      }
+      //Initialize server variables
+      function isValid(str) {
+        return !/[~`!#$%\^&*+=\-\[\]\\';,{}|\\":<>\?]/g.test(str);
+      }
+      var api = '/api'
+      if(!isValid(api)){
+        api="/api"
+      }
+      var home = '/'
+      if(!isValid(home)){
+        home="/"
+      }
+    </script>
+    <script src="common/js/lime.js">//LOGIN STATUS JS</script>
+</head>
+<body style="padding-bottom:0">
+  <!--#include virtual="/common/header.html"-->
+    <!-- <div id="header">
+        <nav id="lcNav" class="nav-extended ">
+            <div class="nav-wrapper container">
+              <a href="" class="brand-logo white-text text-darken-3"></a>
+              <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+               <li><a href="">Home</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="systemsDropdown">Systems<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="assetsDropdown">Assets<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="groupsDropdown">Groups<i class="material-icons right">arrow_drop_down</i></a></li>
+                <li><a class="logout" onclick="logout()">Logout</a></li>
+              </ul>
+            </div>
+
+        <!--    <div id="dashTabs" class="nav-content container"></div>-->
+            <!-- <div id="assetTabs" class="nav-content container"></div>
+        </nav>
+
+        <ul id="systemsDropdown" class="dropdown-content">
+            <li><a href="systems/">Systems</a></li>
+            <li><a href="systems/list.shtml">Systems List</a></li>
+            <li><a href="systems/definitions/">Systems Def List</a></li>
+        </ul>
+
+        <ul id="assetsDropdown" class="dropdown-content">
+            <li><a href="assets/">Assets</a></li>
+            <li><a href="assets/list.shtml">Asset List</a></li>
+            <li><a href="assetdefinitions/">Asset Def List</a></li>
+        </ul>
+
+        <ul id="groupsDropdown" class="dropdown-content">
+            <li><a>Groups</a></li>
+            <li><a href="users/">Users</a></li>
+            <li><a href="usergroups/">User Groups</a></li>
+            <li><a href="assetgroups/">Asset Groups</a></li>
+        </ul>
+        <!--MOBILE NAV -->
+        <!-- <ul class="sidenav" id="mobile">
+            <li><a href="/">Home</a></li>
+            <li><a href="systems/">Systems</a></li>
+            <li><a href='Assets/'>Assets</a></li>
+            <li><a href="groups/">Groups</a></li>
+            <li><a class="logout" onclick="logout()">Logout</a></li>
+        </ul>
+    </div>
+    <script>
+        // CLICK LISTENER FOR SIDENAV IN MOBILE
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+    		    $(".dropdown-trigger").dropdown();
+        });
+        fixAbsoluteUri()
+        // LOGOUT FUNCTION
+        function logout() {
+            $.ajax({async:false,type:"GET",url:api+'/Auth/Logout'});
+            window.location.href='/login/logout.html'
+        }
+    </script>  -->

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+ <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+
+    <div>
+        <h1 style="text-align: center; margin-top: 2em">You have been logged out!</h1>
+        <h3><a href='login/' style="text-align: center; margin-top: 2em;">Return to Login</a></h3>
+    </div>
+    <!--******************************************************************************************************-->
+<!--    <div id="footer"></div>-->
+<!--
+    <script src="/js/lime.js"></script>
+    <script src="/common/js/loginStatus.js"></script>
+-->
+ <!--#include virtual="/common/footer.html"-->
+</html>

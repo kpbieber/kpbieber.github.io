@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+  <title>Lime Portal</title>
+<!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+        <div class="container">
+
+            <div id="groupHeader" class="section">
+                <h1>Ranger Energy Serices</h1>
+                <h3>Powered by Lime</h3>
+                <div class="divider"></div>
+            </div>
+
+            <div class="section row">
+
+<!--
+                  <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+						            <a href="systems/list.shtml"> <i class="large material-icons">laptop</i></a>
+                        <p>View, Create, Edit, Delete</p>
+                      </div>
+                      <div class="card-content card-bottom">
+                        <a class="  waves-effect waves-light link" href="systems/list.shtml">Systems</a>
+                      </div>
+                    </div>
+                  </div>
+-->
+
+<!--
+                  <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+                        <a href="systems/definitions/"><i class="large material-icons">storage</i></a>
+                        <p>Define system types, build dashboards</p>
+                      </div>
+                      <div class="card-conent card-bottom">
+                        <a class="link    waves-effect waves-light" href="systems/definitions/">System Definitions</a>
+                      </div>
+                    </div>
+                  </div>
+-->
+
+                  <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+                        <a href="assets/"> <i class="large material-icons">dashboard</i></a>
+                        <p>View dashboards</p><br>
+                      </div>
+                      <div class="card-conent card-bottom">
+                        <a class="link   waves-effect waves-light" href="assets/list.shtml">Asset Dashboards</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+                        <a href="assetdefinitions/"><i class="large material-icons">build</i></a>
+                        <p>Define models, build dashboards</p>
+                      </div>
+                      <div class="card-conent card-bottom">
+                        <a class="link    waves-effect waves-light" href="assetdefinitions/">Asset Definitions</a>
+                      </div>
+                    </div>
+                  </div>
+
+                 <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+                        <a href="assetgroups/"> <i class="large material-icons">settings_input_component</i></a>
+                        <p>View, Create, Edit, Delete</p>
+                      </div>
+                      <div class="card-content card-bottom">
+                        <a class="link    waves-effect waves-light" href="assetgroups/">Asset Groups</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+                        <a href="users/"><i class="large material-icons">person</i></a>
+                        <p>View, Create, Edit, Delete</p>
+                      </div>
+                      <div class="card-content card-bottom">
+                        <a class="link    waves-effect waves-light" href="users/">Users</a>
+                      </div>
+                    </div>
+                  </div>
+
+			            <div class="col s12 m6 l4 box">
+                    <div class="card">
+                      <div class="card-content">
+                        <a href="usergroups/"><i class="large material-icons">people</i></a>
+                        <p>View, Create, Edit, Delete</p>
+                      </div>
+                      <div class="card-content card-bottom">
+                        <a class="link    waves-effect waves-light" href="usergroups/">User Groups</a>
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+
+<!--******************************************************************************************************-->
+
+ <!--#include virtual="common/footer.html"-->
+            <script src="index.js">//PAGE SPECIFIC JS</script>
+</html>

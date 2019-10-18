@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="/favicon.png">
+
+        <title>Assets List</title>
+        
+        <!-- JQUERY -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+        </script>
+        <!-- MATERIALIZE -->        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <!-- ANIMATE.CSS -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <!-- PERSONAL -->
+        <link href="../css/stylesTest.css" rel="stylesheet" type="text/css">
+                
+    </head>
+    
+    <body>
+        
+        <div id="header">
+            <script>
+                $(function(){
+                    $("#header").load("../common/header.html", function() {
+                        $("#assetTabs").load("assetTabs.html");
+                    });  
+                });
+            </script>
+        </div>
+<!--******************************************************************************************************-->
+        <div id="flexContainer"> 
+        
+        <div id="assetContainer" class="container animated fadeIn ">           
+            <div id="greeting" class="section">
+                <h3 style="color:white;">Your Asset List</h3>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="section">
+                <table  class="responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Del</th>
+                            <th>Edit</th>
+                            <th>Alias</th>
+                            <th>Serial</th>
+                            <th>Model</th>
+                            <th></th>
+                            <th>Last Contact</th>
+                            <th>Desc</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="assetTable">
+                        <!--  TABLE CONTENTS LOADED BY JS    -->
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        
+        
+        <div id="mapContainer" class="container animated fadeIn ">
+           <div id="map"></div>
+           
+           <script src="map.js"></script>
+           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsHjKyB_Rl2HzQ7CryAt1TcgMWJIb7_tE&callback=initMap"
+                async defer></script>
+        </div>
+        
+        </div>
+        
+<!--**************************************** MODAL ***********************************************-->
+        
+        <div id="modal1" class="modal">
+           <h4 id="assetName" assetId></h4>
+                    
+            <div class="input-field">
+                <input id="assetAlias" type="text" class="">
+                <label for="assetAlias" id="assetAliasLabel" class="active">Asset Alias</label>
+            </div>
+
+            <div class="input-field">
+              <textarea id="assetDescription" type="text" class="materialize-textarea"></textarea>
+              <label for="assetDescription" id="assetDescriptionLabel">Description</label>
+            </div>
+                
+            <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create Attribute</h6>    
+                
+            <form id="attrForm" >    
+                <div class="input-field">
+                    <input id="attrName" type="text" class="">
+                    <label for="attrName">Attribute Name</label>
+                </div>
+                
+                <div class="input-field">
+                    <input id="attrValue" type="text" class="">
+                    <label for="attrValue">Attribute Value</label>
+                </div>
+                
+                <div class="">
+                    <button id="attrSubmit" class=" btn-small cyan darken-3 waves-effect waves-light" type="submit" value="Create">Create </button>
+                </div>
+            </form>
+            
+            <h5>Attributes</h5>
+                <table >
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Value</th>
+                            <th>Del</th>
+                        </tr>
+                    </thead>
+                    <tbody id="modalTable">
+                        
+                    </tbody >
+                </table>
+            
+            <div class="modal-footer">
+                <a class="modal-close waves-effect waves- btn-flat">Close</a>
+                <a class=" modal-action modal-close waves-effect waves-green btn-flat assetSubmitBtn">Submit</a>
+            </div>  
+        </div>
+                            
+<!-- ****************************************************************************************************** -->       
+        
+        <script src="../common/js/lime.js">//LOGIN STATUS JS</script>
+        <script src="assets.js">//PAGE SPECIFIC JS</script>
+    </body>
+</html>

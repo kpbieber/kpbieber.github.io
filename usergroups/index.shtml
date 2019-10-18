@@ -1,0 +1,57 @@
+<title>User Groups</title>
+<html>
+   <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+
+    <div class="main container">
+
+        <div id="userHeader">
+            <h1>User Groups</h1>
+            <div class="divider"></div>
+            <div class="section"></div>
+        </div>
+
+        <div class="content container">
+
+
+            <div class="ugMain ugTab">
+
+                <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New User Group</h6>
+
+                <form id="userGroupForm">
+                    <input id="name" type="text" placeholder="Enter name" required>
+                    <input id="description" type="text" placeholder="Enter description..." required>
+                    <div class="">
+                        <button id="usergroupSubmit"
+                                class="btn-small    waves-effect waves-light"
+                                value="Create"
+                                type="submit"> Create
+                        </button>
+                    </div>
+                </form>
+
+                <!-- <h6 class="center-align">User Groups</h6>-->
+                <div class='table-container'>
+                  <table id="userGroupTable" class="centered responsive-table">
+                      <thead>
+                          <th>Del</th>
+                          <th>View</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                      </thead>
+
+                      <tbody >
+                      </tbody>
+                  </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+   <!--#include virtual="/common/footer.html"-->
+
+
+    <script src="usergroups/usergroups.js"></script>
+</html>

@@ -1,0 +1,83 @@
+
+<html>
+<head>
+    <title>User Groups</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <link rel="icon" href="/favicon.png">
+
+    <!-- Dependencies: jquery 3.3.1, material css -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- for icons -->
+    <link rel="stylesheet" href="/node_modules/materialize-css/dist/css/materialize.min.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js"> </script>
+    <script src="/node_modules/materialize-css/dist/js/materialize.min.js"> </script>
+
+    <!-- Personal CSS -->
+    <link href="/css/stylesTest.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+        <div id="header">
+            <script>
+                $(function(){
+                    $('head').append('<link rel="stylesheet" type="text/css" href="/LimeWeb/css/images/customer.css">');
+                    $("#header").load("/common/header.html");
+                });
+            </script>
+        </div>
+<!--******************************************************************************************************-->
+
+    <div class="main container">
+
+        <div id="userHeader">
+            <h1>User Groups</h1>
+            <div class="divider"></div>
+            <div class="section"></div>
+        </div>
+
+        <div class="content container">
+
+
+            <div class="ugMain ugTab">
+
+                <h6><a class="createBtn btn-floating waves-effect waves-light ">
+                       <i class="material-icons">add</i></a>&nbsp;&nbsp;Create New User Group</h6>
+
+                <form id="userGroupForm">
+                    <input id="name" type="text" placeholder="Enter name" required>
+                    <input id="description" type="text" placeholder="Enter description..." required>
+                    <div class="">
+                        <button id="usergroupSubmit"
+                                class="btn-small cyan cyan darken-3 waves-effect waves-light"
+                                value="Create"
+                                type="submit"> Create
+                        </button>
+                    </div>
+                </form>
+
+                <!-- <h6 class="center-align">User Groups</h6>-->
+
+                <table id="userGroupTable" class="centered responsive-table">
+                    <thead>
+                        <th>Del</th>
+                        <th>View</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </thead>
+
+                    <tbody >
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+
+<!--    <script src='/js/lime.js'></script>-->
+    <script src="usergroups.js"></script>
+    <script src="../common/js/lime.js"></script>
+</html>

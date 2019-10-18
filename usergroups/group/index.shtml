@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<title>User Groups</title>
+<html>
+     <!--#include virtual="/common/head.html"-->
+<!--******************************************************************************************************-->
+            <div class="container row">
+
+
+                  <div id="ugHeader" class="row">
+                      <div class="col s12">
+                         <h1>UserGroup</h1>
+                         <h3 id="usergroupName" class="truncate"></h3>
+                         <div class="divider"></div>
+                         <div class="section"></div>
+                     </div>
+                  </div>
+
+                  <div id="usergroupContainer" class="section ">
+                      <div id="ugList" class="row">
+
+                          <div class="col s12 m6 box" id="ugUserTable">
+                            <div class="card">
+                              <div class="card-content">
+                                <a href="" ><i class="large material-icons">person</i> </a>
+                                <p>View and manage users</p>
+                              </div>
+                              <div class="card-content card-bottom">
+                                <a id="usersBtn" class="link   waves-effect waves-light">Users</a>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col s12 m6 box" id="ugPermTable">
+                            <div class="card">
+                              <div class="card-content">
+                                <a href="" ><i class="large material-icons">lock</i> </a>
+                                <p>Manage user permissions</p>
+                              </div>
+                              <div class="card-content card-bottom">
+                                <a id="permissionsBtn" class="link   waves-effect waves-light">Permissions</a>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col s12 m6 box" id="ugAgTable">
+                            <div class="card">
+                              <div class="card-content">
+                                <a href="" ><i class="large material-icons">settings_input_component</i> </a>
+                                <p>View and manage asset groups</p>
+                              </div>
+                              <div class="card-content card-bottom">
+                                <a id="assetgroupsBtn" class="link   waves-effect waves-light">Asset Groups</a>
+                              </div>
+                            </div>
+                          </div>
+
+                           <div class="col s12 m6 box" id="ugAlertTable">
+                             <div class="card">
+                               <div class="card-content">
+                                <a href="" ><i class="large material-icons">email</i> </a>
+                                <p>Create, Edit, Delete</p>
+                              </div>
+                              <div class="card-content card-bottom">
+                                <a id="alertsBtn" class="link   waves-effect waves-light">Alerts</a>
+                              </div>
+                            </div>
+                           </div>
+
+                       </div>
+                       <div class="center-align">
+                           <a href="usergroups/">Back to User Groups</a>
+                       </div>
+
+                    </div>
+
+
+              </div>
+<!--******************************************************************************************************-->
+
+           <!--#include virtual="/common/footer.html"-->
+        <script src="usergroups/group/group.js">//PAGE SPECIFIC JS</script>
+</html>
