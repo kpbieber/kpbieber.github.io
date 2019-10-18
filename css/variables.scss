@@ -1,0 +1,58 @@
+//#70BE43 lime green from limeinst.//
+//#2a2a2a dark grey from limeinst.com
+//#005eb6 wier blue
+
+// LIGHT THEME
+// $primary-color: #005eb6 !default;//#4caf50 !default;
+// $primary-color-light: lighten($primary-color, 15%) !default;
+// $primary-color-dark: darken($primary-color, 15%) !default;
+//
+// $secondary-color: #005eb6 !default;//#2a2a2a !default;
+// $success-color: color("green", "base") !default;
+// $error-color: #e53935 !default;//color("red", "base") !default;
+//
+// $background-color: rgba(255,255,255,.8);// darktheme color #303030;
+// $border-color: rgba(0,0,0,.20); //#555
+//
+// @import url('https://fonts.googleapis.com/css?family=Raleway');
+// $font-family: 'Raleway', sans-serif;
+// $font-color: #2a2a2a; //rgba(0,0,0,.8);
+// $font-size: 10px; // 1 rem = 10px
+// $line-height: 1.6rem;
+//
+// $link-color: lighten($primary-color,0%);
+// $body-link-color: $primary-color; //
+//
+// $header-background-color: #555;
+// $header-color: rgba(255, 255, 255, .8); //font color
+// $header-link-color: white;
+
+
+// DARK THEME
+$primary-color: #70BE43 !default;//#4caf50 !default;
+$primary-color-light: lighten($primary-color, 15%) !default;
+$primary-color-dark: darken($primary-color, 15%) !default;
+
+$secondary-color: rgba(0,0,0,.8) !default;
+$success-color: color("green", "base") !default;
+$error-color: #e53935 !default;//color("red", "base") !default;
+
+$background-color: #303030;
+$border-color: rgba(0,0,0,.5); //#555
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@font-face {
+  font-family: 'Gotham';
+  src: url('font/Gotham-Book.otf');
+}
+$font-family: 'Gotham', 'Raleway', sans-serif;
+$font-color: rgba(255,255,255,.8);
+$font-size: 10px; // 1 rem = 10px
+$line-height: 1.6rem;
+
+$link-color: lighten($primary-color,0%);
+$body-link-color: $primary-color; //
+
+$header-background-color: #555;
+$header-color: rgba(255, 255, 255, .8); //font color
+$header-link-color: white;

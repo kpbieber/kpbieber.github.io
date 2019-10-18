@@ -1,0 +1,26 @@
+.node {
+  cursor: pointer;
+}
+
+/*
+circle {
+	fill: #558b2f !important;
+}
+*/
+
+.node circle {
+  fill: skyblue;   /*#558b2f*/
+  stroke: skyblue;
+  stroke-width: 2px;
+}
+
+.node text {
+  font: 14px sans-serif;
+  fill: white;
+}
+
+.link {
+  fill: none;
+  stroke: #424242;
+  stroke-width: 2px;
+}

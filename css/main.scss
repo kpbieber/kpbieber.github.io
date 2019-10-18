@@ -1,0 +1,10 @@
+// Theme variables
+@import 'variables';
+@import 'mixins';
+// UI library
+@import 'materialize/sass/materialize.scss';
+@import 'materialize-overwrites';
+// Personal Style sheets
+//@import 'light-style.scss'; // for main site
+@import 'dark-style.scss'; // for main site
+//@import 'dashboard.scss'; // for dashboard

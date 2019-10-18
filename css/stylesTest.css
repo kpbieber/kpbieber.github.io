@@ -1,0 +1,380 @@
+/* html {
+  font-family: 'Raleway', sans-serif;
+} */
+
+/* body {
+    background: #212121;/
+    color: rgba(255, 255, 255, .9);
+    padding-bottom: 1.5rem;
+} */
+
+/* NAVBAR */
+/* nav li:hover {}
+
+nav .brand-logo {
+  min-width: fit-content;
+}
+
+i.right {
+	margin-left: 0;
+}
+
+a {
+    color: #87CEEB;
+		cursor: pointer;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+/* GENERAL STYLES AND TABLES */
+/* table {
+    margin-bottom: 1em;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,.75)
+}
+
+table a:hover {
+    text-decoration: underline;
+    transition: color .3s;
+}
+
+table a i:hover {
+  color: white;
+  cursor: pointer;
+  transition: color .5s;
+}
+
+h1, h3, h5 {
+    text-align: center;
+    margin-top: 0;
+}
+
+h3 {
+    color: #558b2f;
+    margin: 0;
+    margin-bottom:.25rem;
+}
+
+thead {
+  border-color: #191919;
+  border-radius: 4px;
+}
+
+tbody {
+  border-color: #191919;
+  border-radius: 4px;
+}
+
+th {
+    color: #558b2f;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+tr {
+    border-color: #191919;
+    border-radius: 4px;
+}
+
+input {
+    color: white;
+}
+
+.modal input {
+    color: black;
+}
+
+pre {
+	margin: 0;
+}
+
+form {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px 0px inset
+}
+
+.card {
+  background-color: #212121;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.7);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+  width: 75%;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.5), 0 10px 10px rgba(0,0,0,0.5);
+}
+
+.card:active {
+  top:2px;
+  box-shadow: 1px 7px 15px rgba(0, 0, 0, 0.8);
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-bottom {
+  width: 100%;
+  padding: 0 !important;
+}
+
+.link {
+  padding: 16px;
+  display: block;
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.box {
+  height:19rem;
+  text-align: center;
+  margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.box a i {
+	color: white;
+}
+
+.box i:hover {
+	color:#87CEEB;
+	cursor: pointer;
+	transition: color .5s;
+}
+
+.modal {
+    color: black;
+    padding: 2em;
+}
+
+.btn-small {
+  margin-bottom: 10px;
+}
+
+.createBtn {
+  box-shadow: 0px 2px 8px rgba(0,0,0,.8);
+  margin-bottom: 10px;
+}
+
+/* LOGIN PAGE */
+/* #loginContainer {
+    margin-top: 15vh;
+}
+#loginBox {
+    margin: 0 auto;
+    padding: 2em;
+    border: 2px solid rgba(15,15,15,1);
+    box-shadow: 0px 4px 8px rgba(0,0,0,.8);
+    border-radius: 5px;
+    background: #212121;
+    width: 300px;
+    text-align: center;
+}
+
+#loginBox label {
+    color: white;
+}
+
+#loginBox input {
+    padding-left: 5px;
+}
+
+#errorText{
+    clear: both;
+    line-height: 28px
+}
+
+.changeId,.confirm{
+    display:none;
+} */
+
+/* ASSETS HOME PAGE */
+
+    /* #flexContainer {
+        display: flex;
+        padding: 1rem;
+    }
+
+    #attrForm{
+        display: none;
+    }
+
+    #assetContainer {
+	    padding-right: 1rem;
+    } */
+
+    /* map styles */
+    /* #mapContainer {
+        margin-top: 7em;
+        height: 80vh;
+        border: 2px solid #424242;
+        border-radius: 10px;
+    }
+
+    #map {
+        height: 100%;
+        border-radius: 5px;
+    }
+
+    #modal1 {
+      background-color: #e0e0e0;
+      border-radius: 5px;
+    }
+
+    div.modal-footer {
+      background-color: #e0e0e0 !important;
+    } */
+
+/* MODEL ID PAGE */
+/* #modelForm {
+  display: none;
+}
+
+/* ALARM PAGE */
+/*
+#modelHeader {
+    margin-bottom: 1.5em;
+}
+
+#alarmForm {
+    display: none;
+}
+
+#calculationDialog {
+    background: #212121;
+    color: white;
+}
+
+#calculationDialog a {
+    color: #87CEEB;
+}
+
+#calculationDialog select {
+    background: none;
+    color: white;
+}
+
+#calculationDialog select:focus-within {
+    background: none;
+    color: black;
+}
+
+#calcForm {
+    display: none;
+}
+
+/* DATA ITEM PAGE */
+/* #dataItemForm .row {
+    margin-bottom: 0;
+    padding: .5em;
+}
+
+#dataItemForm {
+    display:none;
+}
+
+#formContainer h6 {
+    padding-left: 5px;
+} */
+
+/* GROUPS/ADMIN PAGE */
+/* #adminList {
+    text-align: center;
+}
+
+#groupHeader {
+    margin-bottom: 1.5em;
+} */
+
+/* USERS PAGE */
+/* #userHeader {
+    margin-bottom: 1.5em;
+}
+
+#userForm {
+    display: none;
+} */
+
+/* USER GROUP PAGE */
+/* #userGroupForm {
+    display: none;
+} */
+
+/* GROUP CONFIG PAGE */
+/* #ugHeader {
+    margin-bottom: 1.5em;
+} */
+
+/* USER CONFIG PAGE */
+/* PERMISSION CONFIG PAGE
+/* ALERT CONFIG PAGE */
+/* #alertForm {
+    display: none;
+} */
+
+/* ASSET GROUPS PAGE */
+/* #assetgroupsHeader {
+    margin-bottom: 1.5em;
+}
+
+#assetgroupForm {
+    display: none;
+}
+
+#assetGroupAssetsList {
+    margin-bottom: 1.5em;
+}
+
+#addAssetForm {
+    display: none;
+} */
+
+
+
+/* SYSTEM DEFINITIONS LIST PAGE */
+/* #sysdefForm {
+	display: none;
+} */
+
+/* SYSTEM DEFINITIONS VIEW PAGe */
+/* .treeControls {
+	height: 27px;
+	line-height: 27px;
+	font-size: 12px;
+	padding: 0 8px;
+	text-transform: capitalize;
+} */
+
+/* modbile and tablet styles */
+/* @media all and (max-width: 1000px) {
+    body {
+        background: #212121;
+    }
+
+    #loginBox {
+        background: #323232;
+    }
+
+    #flexContainer {
+	    display: block;
+	}
+} */
+/*
+@media all and (max-width: 800px) {
+	#diagram {
+		display: none;
+	}
+} */

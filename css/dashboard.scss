@@ -1,0 +1,339 @@
+//
+// textarea{height:300px}
+// div.dashboard{
+// /* General Styles */
+// table {
+//   border-collapse: collapse;
+//   width: 100%;
+// }
+//
+//  td, th {
+//     border:1px solid darken($background-color, 15%) ;
+//     padding: 2px;
+// }
+//
+// tr:nth-child(even){
+// }
+//
+//
+// tr:hover {
+// 	background-color:  lighten($background-color, 15%);
+// }
+//
+// th {
+//   text-align: left;
+//   background-color: $primary-color;
+//   color: $header-color;
+//     a{
+// 	    color:$header-color;
+//     }
+// }
+// /* Jquery overrides */
+// .ui-widget{
+//     font-size:12px;
+// }
+// .ui-widget-content{
+//    @extend %body-theme;
+//     background:none;
+// }
+//
+// .ui-widget-header{
+//     @extend %header-theme;
+//     background:none;
+// }
+//
+// .ui-button{
+//   @extend %header-theme;
+//   padding:4px;
+//   background:none;
+// }
+// /* Style the links inside the navigation bar */
+//
+// .content{
+// 	position:absolute;
+// 	width:100%;
+//     height: calc(100% - 64px);
+//     overflow:hidden;
+// }
+// .card{
+//     width:30%!important;
+//     display:inline-block;
+//     margin:10px 20px 10px 20px;
+// }
+// .footer-dash{
+// 	position: absolute!important;
+// 	bottom:0px;
+// 	height:7%;
+// }
+//
+// .tabcontent{
+//     position: absolute;
+// 	overflow:auto;
+//     width:100%;
+//     height: calc( 100% - 90px );
+//     display: none;
+//     border-top: none;
+//     background-color: $background-color;
+// }
+//
+// ul.tabs {
+// 	background-color: $secondary-color;
+//     list-style-type: none;
+//     height:26px;
+//     margin: 0;
+//     padding: 0;
+//     overflow: hidden;
+// }
+// a.tablinks{
+//     height:100%;
+//     input{
+//         height:18px;
+//     }
+//
+// }
+// a.tablinks.active{
+// 	@extend %body-theme;
+//     padding-left:40px;
+//     padding-right:40px;
+//         input{
+//         color:black;
+//         height:18px;
+//     }
+// }
+// .input-field{
+//         display:inline-block;
+// }
+// .tabDiv {
+//     height:calc(100% - 24px)
+// }
+//
+//
+//
+//
+// .ui-header img.logo {
+//     display: block;
+//     margin-left: auto;
+//     margin-right: auto;
+//     height: 90px;
+// }
+// .footer-dash p {
+//     float: left;
+//     margin-left: 15px;
+//     font-weight: normal;
+//     font-size:.8em;
+// }
+// .footer-dash a,.ui-body-c .ui-link {
+// 	text-decoration: none;
+// 	font-weight: normal;
+// }
+// .jqm-themeswitcher {
+//     float: right;
+// }
+//
+// /*Page layouts */
+//
+// /* Style the list */
+//
+// /* Float the list items side by side */
+// ul.tabs li {
+//     float: left;
+// }
+//
+// /* Style the links inside the list items */
+// ul.tabs li a {
+//     display: inline-block;
+//     text-align: center!important;
+//     padding: 4px 16px;
+//     text-decoration: none;
+//     transition: 0.3s;
+//     font-size: 12px;
+// }
+//
+// .value{
+//     vertical-align:middle;
+//     text-align: center;
+//     margin:auto;
+//     width:100%;
+//     height:100%;
+// }
+//
+// .tileConfig{
+//     border-top:1px dashed white;
+//     padding:5px;
+//     float:right;
+//     width:100%
+// }
+//
+//
+// #channels{
+//     position:fixed;
+//     width:200px;
+//     top:50%;
+//     left:50%;
+// }
+//
+// #digitalsConnected .inList,#digitalsConnected .outList{
+//     max-height:300px;
+// }
+//
+// #flowChartDialog textarea {
+//     height:350px;width:550px;display:block
+// }
+//
+// .assetAlias{
+//     margin:0;
+//     padding:0;
+// }
+//
+//
+//
+// .newAxisMin,.newAxisMax,.historyLength,.refreshPeriod{
+//     width:60px;
+//     text-align:center;
+// }
+//
+// #currentData{
+//     text-align:center;
+// }
+//
+//
+// .graphSettings > label {
+//     font-size:.9em;
+//     display:block;
+//     margin-bottom:10%;
+// }
+// .axisSettings > label {
+//     font-size:.9em;
+//     display:block;
+//     margin-bottom:10%;
+// }
+// li.digital{
+//     border:1px solid transparent;
+//     position:absolute;
+//     display:inline-block;
+//     text-align:center;
+//     text-align:center;
+//     margin:0px;
+//     padding:0px;
+//     vertical-align: top;
+// }
+// .digital[digType="dataTable"]{
+// 	overflow-y:auto;
+// 	overflow-x:hidden;
+// }
+// .digital[digType="text"]{
+// 	overflow:hidden;
+// }
+// li.digital div p{
+//     margin:0px;
+//     padding:0px;
+//     white-space: nowrap;
+//     overflow: hidden;
+// }
+//
+// table.currentDataTable,table.alarms,table.events{
+//     white-space: nowrap;
+//     height:100%;
+//     width:100%;
+// }
+//
+// td > .dataItems{
+//     height:10px;
+//     line-height:8px;
+//     font-size:8px;
+// }
+//
+// .removeDigital{
+//     position:absolute;
+//     right:0px;
+//     z-index:10;
+// }
+//
+// .editDigital{
+//     position:absolute;
+//     left:0px;
+//     z-index:10;
+// }
+//
+// .configureDigitals{
+//     z-index:100;
+//     float:right;
+//     clear:right;
+// }
+//
+//
+//
+// #digitals{
+//     height:35%;
+// }
+//
+// /* Custom Dialog Styling for tile config*/
+// .tileConfig>div>label,
+// .tileConfig>label,
+// .colorConfig>label {
+//     float:right;
+//     clear:both;
+//     margin-right:5%
+// }
+//
+// .tileConfig>div{
+//     border-top:1px dashed white;
+//     margin-top:5px;
+//     padding-top:5px
+// }
+//
+// .tileConfig,.colorConfig{
+//     margin-top:5px
+// }
+//
+//
+// @media only screen and (max-width: 600px) {
+//     .digital {
+//         width:100%!important;
+//         position:static!important;
+//         -webkit-box-sizing: border-box;
+//         -moz-box-sizing: border-box;
+//         box-sizing: border-box;
+//     }
+// 	.digital[mobile="hide"]{
+// 		display:none;
+// 	}
+// 	.tabcontent.addedTab{
+// 		width:100%!important;
+// 	}
+//     li.digital div p{
+//     width:100%!important
+//     }
+//     .digital[col-w="1"]{
+//         width:16.5%!important
+//     }
+//     .digital[col-w="2"]{
+//         width:33%!important
+//     }
+//     .digital[col-w="3"]{
+//         width:49.5%!important
+//     }
+//     .digital[col-w="4"]{
+//         width:66%!important
+//     }
+//     .digital[col-w="5"]{
+//         width:82.5%!important
+//     }
+//     .digital[col-w="6"] {
+//         width:99%!important
+//     }
+//     .digital[digtype="fileTable"] div .jqresize, .digital[digtype="alarmTable"] div .jqresize, .digital[digtype="eventTable"] div .jqresize, .digital[digtype="gauge"] div .jqresize, .digital[digtype="dataTable"] div .jqresize, .digital[digtype="gauge"] div .jqresize,.digital[digtype="gauge"] div .jqresize{
+//         min-height:100px
+//     }
+//     .jqresize {
+//         width:99%!important
+//     }
+//     .removeDigital,.editDigital{
+//         display:none!important
+//     }
+//     .digitalsTable{
+// 		padding:0px;
+// 		margin:0px;
+// 	}
+// }
+// }
